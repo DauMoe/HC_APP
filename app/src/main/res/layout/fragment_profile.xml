@@ -1,14 +1,169 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/vector"
+    android:orientation="vertical"
+    android:padding="16dp"
     android:layout_height="match_parent"
     tools:context=".Fragments.ProfileFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:layout_margin="10dp"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content">
+    <TextView
+        android:textColor="#fff"
+        android:textSize="20sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Your name"/>
+        <EditText
+            android:padding="10dp"
+            android:inputType="text"
+            android:layout_marginTop="20dp"
+            android:hint="Full name"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:background="@drawable/rectangle_33"/>
+        
+    </LinearLayout>
+    <LinearLayout
+        android:layout_margin="10dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Date of birth"/>
 
-</FrameLayout>
+        <EditText
+            android:id="@+id/editText_date"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_margin="20dp"
+            android:background="@drawable/rectangle_33"
+            android:ems="10"
+            android:hint="dd-MM-yyyy"
+            android:inputType="date"
+            android:padding="10dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_margin="10dp"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:layout_marginBottom="20dp"
+        android:textColor="#fff"
+        android:textSize="20sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Gender"/>
+    <RadioGroup
+        android:orientation="horizontal"
+        android:layout_width="330dp"
+        android:layout_height="60dp" >
+        <RadioButton
+            android:layout_marginLeft="30dp"
+        android:id="@+id/male"
+        android:text="Male"
+            android:background="@drawable/rectangle_33"
+        android:layout_width="120dp"
+        android:layout_height="50dp" />
+        <RadioButton
+            android:layout_marginLeft="10dp"
+            android:id="@+id/female"
+            android:text="Female"
+            android:background="@drawable/rectangle_33"
+            android:checked="true"
+            android:layout_width="120dp"
+            android:layout_height="50dp" />
+    </RadioGroup>
+</LinearLayout>
+    <LinearLayout
+        android:layout_margin="10dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="Weight"
+                android:textColor="#fff"
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/weight"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_margin="20dp"
+                android:background="@drawable/rectangle_33"
+                android:ems="10"
+                android:hint="weight"
+                android:inputType="text"
+                android:padding="10dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginLeft="50dp"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="Height"
+                android:textColor="#fff"
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/height"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_margin="20dp"
+                android:background="@drawable/rectangle_33"
+                android:ems="10"
+                android:hint="height"
+                android:inputType="text"
+                android:padding="10dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_margin="10dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textSize="20sp"
+            android:textColor="#fff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BMI"/>
+        <EditText
+            android:id="@+id/bmi"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_margin="20dp"
+            android:background="@drawable/rectangle_33"
+            android:ems="10"
+            android:hint="height"
+            android:inputType="text"
+            android:padding="10dp" />
+    </LinearLayout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_gravity="center"
+        android:textColor="#fff"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:text="Save"
+        android:background="@drawable/rectangle_3"/>
+
+
+
+</LinearLayout>
