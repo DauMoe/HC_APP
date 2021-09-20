@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/vector"
+    android:paddingTop="30dp"
+    tools:context=".Fragments.HomeFragment">
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_gravity="center_vertical"-->
+<!--        android:layout_marginLeft="30dp"-->
+<!--        android:layout_marginRight="30dp"-->
+<!--        android:layout_margin="20dp"-->
+<!--        android:layout_weight="1"-->
+<!--        android:background="@drawable/rectangle_17"-->
+<!--        android:orientation="vertical"-->
+<!--        android:paddingTop="5dp">-->
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:paddingLeft="20dp"-->
+<!--            android:paddingTop="5dp"-->
+<!--            android:text="Total today:"-->
+<!--            android:textStyle="bold"-->
+<!--            android:textColor="@color/teal_700"-->
+<!--            android:textSize="20sp" />-->
+<!--        <TextView-->
+<!--            android:id="@+id/last_records"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:gravity="center"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:fontFamily="@font/arimamaduraiextrabold"-->
+<!--            android:text="0 step"-->
+<!--            android:paddingTop="10dp"-->
+<!--            android:paddingBottom="10dp"-->
+<!--            android:textSize="30sp"-->
+<!--            android:textStyle="bold" />-->
+<!--        <androidx.appcompat.widget.AppCompatButton-->
+<!--            android:id="@+id/start_step"-->
+<!--            android:backgroundTint="#F19F9F"-->
+<!--            android:text="Start!"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:layout_marginLeft="30dp"-->
+<!--            android:layout_marginRight="30dp"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"/>-->
+<!--    </LinearLayout>-->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+        <TextView
+            android:text="TODAY:"
+            android:textStyle="bold"
+            android:textColor="#1E57AE"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"/>
+        <TextView
+            android:id="@+id/last_records"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/arimamaduraiextrabold"
+            android:text="0 step"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"/>
+    </LinearLayout>
+    <ImageView
+        android:id="@+id/step_filter"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_gravity="right"
+        android:paddingRight="30dp"
+        android:src="@drawable/ic_calendar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/step_chart"
+        android:background="@color/white"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="50dp"
+        android:layout_weight="2.2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
