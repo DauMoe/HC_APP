@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    tools:context=".StepCountActivity">
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/start_step"
+        android:text="Start!"
+        android:visibility="gone"
+        android:backgroundTint="#FFEB3B"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:id="@+id/step_area"
+        android:visibility="visible"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/step_counter"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/arimamaduraiextrabold"
+            android:text="0 step"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:textSize="30sp"
+            android:textStyle="bold"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/step_stop"
+            android:text="Stop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+</LinearLayout>

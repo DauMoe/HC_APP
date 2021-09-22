@@ -16,10 +16,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.hc_app.LoginActivity;
+import com.example.hc_app.Models.ExerHistory;
 import com.example.hc_app.Models.RespObj;
 import com.example.hc_app.R;
 import com.example.hc_app.Services.APIConfig;
 import com.example.hc_app.Services.RetrofitConfig;
+import com.example.hc_app.StepCountActivity;
+import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -96,8 +99,19 @@ public class HomeFragment extends Fragment {
         pref                    = getContext().getSharedPreferences(LOGIN_DATA, MODE_PRIVATE);
         last_records            = v.findViewById(R.id.last_records);
         x                       = RetrofitConfig.JSONconfig().create(APIConfig.class);
+
+        last_records.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), StepCountActivity.class));
+            }
+        });
+
+        //init timestamp
+        Long starttime = 1632041160000L;
+        Long endtime = 1632045170000L;
         GetStepsToday();
-        DrawStepsHistory();
+        DrawStepsHistory(starttime, endtime);
         return v;
     }
 
@@ -115,7 +129,7 @@ public class HomeFragment extends Fragment {
                     try {
 //                        Log.i("RESPONSE: ", String.valueOf(response.body().getMsg().get(0)));
                         JSONObject x = new JSONObject(response.body().getMsg().get(0).toString());
-                        last_records.setText(Integer.parseInt(x.getString("stepofday")) + " steps");
+                        last_records.setText(Integer.parseInt(String.valueOf(Math.round(Float.parseFloat(x.getString("stepofday"))))) + " steps");
                     } catch (JSONException e) {
                         //Convert failed exception
                         Toast.makeText(getContext(), "Can't convert response to JSONObject", Toast.LENGTH_LONG).show();
@@ -138,7 +152,38 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    private void DrawStepsHistory() {
+    private void DrawStepsHistory(Long starttime, Long endtime) {
+        Map<String, Object> mReq  = new ArrayMap<>();
+        mReq.put("userID", pref.getInt(USER_ID, 0));
+        mReq.put("token", pref.getString(USER_TOKEN, ""));
+        mReq.put("starttime", starttime);
+        mReq.put("endtime", endtime);
+        RequestBody body        = RequestBody
+                .create(okhttp3.MediaType.parse("application/json; charset=utf-8"),(new JSONObject(mReq)).toString());
+        Call<RespObj> g = x.GetSteps(body);
+        g.enqueue(new Callback<RespObj>() {
+            @Override
+            public void onResponse(Call<RespObj> call, Response<RespObj> response) {
+                if (response.body().getCode() == 200) {
+                    for (Object i: response.body().getMsg()) {
+                        ExerHistory v = new Gson().fromJson(i.toString(), ExerHistory.class);
+                        Log.e("DISTANCE:", String.valueOf(v.getDistanceofday()));
+                    }
+                } else if (response.body().getCode() == 205) {
+                    startActivity(new Intent(getContext(), LoginActivity.class));
+                } else {
+                    Toast.makeText(getContext(), response.body().getMsg().get(0).toString(), Toast.LENGTH_LONG).show();
+                }
+            }
 
+            @Override
+            public void onFailure(Call<RespObj> call, Throwable t) {
+                Toast.makeText(getContext(), "Call API failed!", Toast.LENGTH_LONG).show();
+
+                //DEBUG AREA
+                Log.i("CODE:", String.valueOf(call));
+                Log.i("ERR:", String.valueOf(t));
+            }
+        });
     }
 }
