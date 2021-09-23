@@ -1,169 +1,216 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:background="@drawable/vector"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@drawable/vector"
-    android:orientation="vertical"
-    android:padding="16dp"
     android:layout_height="match_parent"
-    tools:context=".Fragments.ProfileFragment">
+    tools:context=".MainActivity">
+
     <LinearLayout
-        android:layout_margin="10dp"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    <TextView
-        android:textColor="#fff"
-        android:textSize="20sp"
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Your name"/>
-        <EditText
-            android:padding="10dp"
-            android:inputType="text"
-            android:layout_marginTop="20dp"
-            android:hint="Full name"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:background="@drawable/rectangle_33"/>
-        
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp">
+
     </LinearLayout>
-    <LinearLayout
-        android:layout_margin="10dp"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:textColor="#fff"
-            android:textSize="20sp"
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="0dp"
+        android:layout_height="300dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="152dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_myprofile">
+
+        <LinearLayout
+            android:layout_margin="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Date of birth"/>
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/editText_date"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:layout_margin="20dp"
-            android:background="@drawable/rectangle_33"
-            android:ems="10"
-            android:hint="dd-MM-yyyy"
-            android:inputType="date"
-            android:padding="10dp" />
-    </LinearLayout>
-    <LinearLayout
+            <TextView
+                android:textSize="18dp"
+                android:text="Full Name"
+                android:textColor="#000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_marginTop="10dp"
+                android:layout_width="350dp"
+                android:layout_height="40dp"
+                android:background="@drawable/input_info"/>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:textSize="18dp"
+                android:text="Date of Birth"
+                android:textColor="#000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:layout_width="350dp"
+                android:inputType="date"
+                android:hint="dd/mm/yy"
+                android:layout_height="40dp"
+                android:background="@drawable/input_info"/>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:textSize="18dp"
+                android:text="Gender"
+                android:textColor="#000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <RadioGroup
+                android:layout_gravity="center"
+                android:background="@drawable/input_info"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_width="200dp"
+                android:layout_height="40dp">
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:layout_width="100dp"
+                    android:text="Male"
+                    android:layout_height="40dp" />
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:layout_width="100dp"
+                    android:checked="true"
+                    android:text="FeMale"
+                    android:layout_height="40dp" />
+            </RadioGroup>
+            <LinearLayout
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_marginRight="120dp"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:gravity="center"
+                        android:fontFamily="@font/cabin"
+                        android:textColor="#000"
+                        android:textSize="18dp"
+                        android:text="Height"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="100dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/input_info"
+                        android:layout_height="30dp"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:fontFamily="@font/cabin"
+                        android:textColor="#000"
+                        android:textSize="18dp"
+                        android:text="Weight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="100dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/input_info"
+                        android:layout_height="30dp"/>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="BMI"
+                    android:fontFamily="@font/cabin"
+                    android:textColor="#000"
+                    android:textSize="18dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_marginTop="10dp"
+                    android:layout_width="350dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/input_info"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <ImageView
+        android:id="@+id/main_sc"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:layout_margin="10dp"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="212dp"
+        android:src="@drawable/back"
+        app:layout_constraintEnd_toStartOf="@+id/txt_myprofile"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
-        android:layout_marginBottom="20dp"
-        android:textColor="#fff"
-        android:textSize="20sp"
-        android:layout_width="match_parent"
+        android:id="@+id/txt_myprofile"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Gender"/>
-    <RadioGroup
-        android:orientation="horizontal"
-        android:layout_width="330dp"
-        android:layout_height="60dp" >
-        <RadioButton
-            android:layout_marginLeft="30dp"
-        android:id="@+id/male"
-        android:text="Male"
-            android:background="@drawable/rectangle_33"
-        android:layout_width="120dp"
-        android:layout_height="50dp" />
-        <RadioButton
-            android:layout_marginLeft="10dp"
-            android:id="@+id/female"
-            android:text="Female"
-            android:background="@drawable/rectangle_33"
-            android:checked="true"
-            android:layout_width="120dp"
-            android:layout_height="50dp" />
-    </RadioGroup>
-</LinearLayout>
-    <LinearLayout
-        android:layout_margin="10dp"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <TextView
-                android:text="Weight"
-                android:textColor="#fff"
-                android:textSize="20sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <EditText
-                android:id="@+id/weight"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:layout_margin="20dp"
-                android:background="@drawable/rectangle_33"
-                android:ems="10"
-                android:hint="weight"
-                android:inputType="text"
-                android:padding="10dp" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_marginLeft="50dp"
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <TextView
-                android:text="Height"
-                android:textColor="#fff"
-                android:textSize="20sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <EditText
-                android:id="@+id/height"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:layout_margin="20dp"
-                android:background="@drawable/rectangle_33"
-                android:ems="10"
-                android:hint="height"
-                android:inputType="text"
-                android:padding="10dp" />
-        </LinearLayout>
+        android:layout_marginStart="135dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="128dp"
+        android:fontFamily="@font/cabin"
+        android:gravity="center"
+        android:text="My Profile"
+        android:textColor="#000"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/linearLayout" />
 
-    </LinearLayout>
-    <LinearLayout
-        android:layout_margin="10dp"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:textSize="20sp"
-            android:textColor="#fff"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="BMI"/>
-        <EditText
-            android:id="@+id/bmi"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:layout_margin="20dp"
-            android:background="@drawable/rectangle_33"
-            android:ems="10"
-            android:hint="height"
-            android:inputType="text"
-            android:padding="10dp" />
-    </LinearLayout>
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_gravity="center"
-        android:textColor="#fff"
+    <ImageView
+        android:id="@+id/imageView"
         android:layout_width="100dp"
-        android:layout_height="50dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="100dp"
+        android:src="@drawable/imgperson"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_myprofile"
+        app:layout_constraintVertical_bias="0.41" />
+
+    <Button
+        android:id="@+id/button_save"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="159dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="164dp"
+        android:layout_marginBottom="18dp"
         android:text="Save"
-        android:background="@drawable/rectangle_3"/>
-
-
-
-</LinearLayout>
+        android:backgroundTint="#F44336"
+        android:textColor="#FFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView" />
+</androidx.constraintlayout.widget.ConstraintLayout>
