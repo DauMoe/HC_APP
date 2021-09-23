@@ -26,17 +26,11 @@ public class StepCountActivity extends AppCompatActivity {
                 public void onServiceConnected(ComponentName componentName, IBinder service) {
                     StepsService stepService = ((StepsService.StepBinder) service).getService();
                     showStepCount(0, stepService.getStepCount());
-                    stepService.registerCallback(new UpdateUICallback() {
-                        @Override
-                        public void updateUi(int stepCount) {
-                            showStepCount(0, stepCount);
-                        }
-                    });
+                    stepService.registerCallback(stepCount -> showStepCount(0, stepCount));
                 }
 
                 @Override
-                public void onServiceDisconnected(ComponentName componentName) {
-                }
+                public void onServiceDisconnected(ComponentName componentName) {}
             };
 
     public void showStepCount(int totalStepNum, int currentCounts) {
