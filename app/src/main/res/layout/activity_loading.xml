@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:weightSum="3"
+    android:orientation="vertical"
+    android:background="@drawable/vector2"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:gravity="center"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:layout_marginTop="70dp"
+        android:id="@+id/login_logo"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:layout_width="250dp"
+        android:layout_height="100dp"
+        android:src="@drawable/care" />
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.appcompat.widget.AppCompatButton
+            android:text="Login"
+            android:layout_marginRight="20dp"
+            android:fontFamily="@font/cabin"
+            android:background="@drawable/btn_login"
+            android:layout_width="150dp"
+            android:layout_height="50dp"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:text="register"
+            android:fontFamily="@font/cabin"
+            android:background="@drawable/btn_login"
+            android:layout_width="150dp"
+            android:layout_height="50dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <TextView
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textColor="#fff"
+        android:text="Now! Quick Login Use Touch ID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+        <ImageView
+            android:layout_marginTop="25dp"
+            android:layout_gravity="center"
+            android:src="@drawable/icon_vantay"
+            android:layout_width="70dp"
+            android:layout_height="70dp"/>
+        <TextView
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textColor="#fff"
+            android:text="Use Touch ID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+</LinearLayout>
