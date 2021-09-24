@@ -1,206 +1,180 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:background="@drawable/vector"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+<LinearLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
-    <ScrollView
-        android:id="@+id/scrollView"
-        android:layout_width="0dp"
-        android:layout_height="300dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="152dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_myprofile">
-
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    android:background="@drawable/vector"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
+        android:gravity="center"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="120dp">
+    <ImageView
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:src="@drawable/imgperson"
+        android:layout_width="100dp"
+        android:layout_height="80dp"/>
+        <TextView
+           android:textColor="#000"
+            android:layout_marginLeft="20dp"
+            android:fontFamily="@font/cabin"
+            android:textSize="30sp"
+            android:layout_gravity="bottom"
+            android:text="Username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="bottom"
+            android:src="@drawable/ic_edit"
+            android:layout_width="30dp"
+            android:layout_height="25dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:layout_marginTop="35dp"
+        android:layout_gravity="center"
+        android:background="#fff"
+        android:layout_width="350dp"
+        android:layout_height="400dp">
         <LinearLayout
-            android:layout_margin="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        <TextView
+            android:textSize="18sp"
+            android:fontFamily="@font/cabin"
+            android:textColor="#B3000000"
+            android:text="Full name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:fontFamily="@font/cabin"
+            android:textColor="#000"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
             <TextView
-                android:textSize="18dp"
-                android:text="Full Name"
-                android:textColor="#000"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_marginTop="10dp"
-                android:layout_width="350dp"
-                android:layout_height="40dp"
-                android:background="@drawable/input_info"/>
-
-            <TextView
-                android:layout_marginTop="10dp"
-                android:textSize="18dp"
+                android:textSize="18sp"
+                android:fontFamily="@font/cabin"
+                android:textColor="#B3000000"
                 android:text="Date of Birth"
-                android:textColor="#000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:layout_width="350dp"
-                android:inputType="date"
-                android:hint="dd/mm/yy"
-                android:layout_height="40dp"
-                android:background="@drawable/input_info"/>
-
-            <TextView
-                android:layout_marginTop="10dp"
-                android:textSize="18dp"
-                android:text="Gender"
+            <EditText
+                android:fontFamily="@font/cabin"
                 android:textColor="#000"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_gravity="center"
+                android:layout_marginRight="20dp"
+                android:textSize="18sp"
+                android:fontFamily="@font/cabin"
+                android:textColor="#B3000000"
+                android:text="Gender"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <RadioGroup
                 android:layout_gravity="center"
-                android:background="@drawable/input_info"
-                android:gravity="center"
                 android:orientation="horizontal"
-                android:layout_marginTop="10dp"
-                android:layout_width="200dp"
-                android:layout_height="40dp">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
                 <com.google.android.material.radiobutton.MaterialRadioButton
                     android:layout_width="100dp"
-                    android:text="Male"
-                    android:layout_height="40dp" />
+                    android:layout_marginRight="20dp"
+                    android:layout_height="40dp"
+                    android:text="Male"/>
                 <com.google.android.material.radiobutton.MaterialRadioButton
                     android:layout_width="100dp"
                     android:checked="true"
-                    android:text="FeMale"
-                    android:layout_height="40dp" />
+                    android:text="Female"
+                    android:layout_height="40dp"/>
             </RadioGroup>
-            <LinearLayout
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <LinearLayout
-                    android:layout_marginRight="120dp"
-                    android:orientation="vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:gravity="center"
-                        android:fontFamily="@font/cabin"
-                        android:textColor="#000"
-                        android:textSize="18dp"
-                        android:text="Height"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="100dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/input_info"
-                        android:layout_height="30dp"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:fontFamily="@font/cabin"
-                        android:textColor="#000"
-                        android:textSize="18dp"
-                        android:text="Weight"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="100dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/input_info"
-                        android:layout_height="30dp"/>
-                </LinearLayout>
-            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
             <LinearLayout
                 android:orientation="vertical"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            <TextView
+                android:textSize="18sp"
+                android:fontFamily="@font/cabin"
+                android:textColor="#B3000000"
+                android:text="Height"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:fontFamily="@font/cabin"
+                android:textColor="#000"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginLeft="100dp"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:text="BMI"
+                    android:textSize="18sp"
                     android:fontFamily="@font/cabin"
-                    android:textColor="#000"
-                    android:textSize="18dp"
+                    android:textColor="#B3000000"
+                    android:text="Weight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_marginTop="10dp"
-                    android:layout_width="350dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/input_info"/>
-
+                <EditText
+                    android:fontFamily="@font/cabin"
+                    android:textColor="#000"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"/>
             </LinearLayout>
-
         </LinearLayout>
-    </ScrollView>
-
-    <ImageView
-        android:id="@+id/main_sc"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_margin="10dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="212dp"
-        android:src="@drawable/back"
-        app:layout_constraintEnd_toStartOf="@+id/txt_myprofile"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/txt_myprofile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="135dp"
-        android:layout_marginTop="56dp"
-        android:layout_marginEnd="128dp"
-        android:fontFamily="@font/cabin"
-        android:gravity="center"
-        android:text="My Profile"
-        android:textColor="#000"
-        android:textSize="32sp"
-        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/linearLayout" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="100dp"
-        android:src="@drawable/imgperson"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_myprofile"
-        app:layout_constraintVertical_bias="0.41" />
-
-    <Button
-        android:id="@+id/button_save"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="159dp"
-        android:layout_marginTop="22dp"
-        android:layout_marginEnd="164dp"
-        android:layout_marginBottom="18dp"
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textSize="18sp"
+                android:fontFamily="@font/cabin"
+                android:textColor="#B3000000"
+                android:text="BMI"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn_pink"
+                android:fontFamily="@font/cabin"
+                android:textColor="#000"
+                android:layout_width="300dp"
+                android:layout_height="43dp"/>
+        </LinearLayout>
+    </LinearLayout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
         android:text="Save"
-        android:backgroundTint="#F44336"
-        android:textColor="#FFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:fontFamily="@font/cabin"
+        android:textColor="#fff"
+        android:background="@drawable/rectangle_3"
+        android:layout_width="150dp"
+        android:layout_height="50dp"/>
+
+</LinearLayout>

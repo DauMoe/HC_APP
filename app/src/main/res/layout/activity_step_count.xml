@@ -72,7 +72,6 @@
         </LinearLayout>
         <TextView
             android:textColor="#2D956F"
-            android:marginLeft="20dp"
             android:background="#F19F9F"
             android:id="@+id/step_counter"
             android:layout_width="300dp"
