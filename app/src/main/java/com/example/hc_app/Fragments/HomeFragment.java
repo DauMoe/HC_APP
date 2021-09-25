@@ -27,6 +27,7 @@ import com.google.gson.Gson;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Map;
 
@@ -108,8 +109,15 @@ public class HomeFragment extends Fragment {
         });
 
         //init timestamp
-        Long starttime = 1632041160000L;
-        Long endtime = 1632045170000L;
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.HOUR_OF_DAY, 0);
+        c.set(Calendar.MINUTE, 0);
+        c.set(Calendar.SECOND, 0);
+        c.set(Calendar.MILLISECOND, 0);
+        Long starttime = c.getTimeInMillis();
+        Long endtime = starttime + 86400000L; //86,400,000 milliseconds = a day
+        System.out.println("START: " + starttime);
+        System.out.println("END: " + endtime);
         GetStepsToday();
         DrawStepsHistory(starttime, endtime);
         return v;
@@ -126,13 +134,18 @@ public class HomeFragment extends Fragment {
             @Override
             public void onResponse(Call<RespObj> call, Response<RespObj> response) {
                 if (response.body().getCode() == 200) {
-                    try {
+                    Log.e("RSEP: ", response.body().getMsg().toString());
+                    if (response.body().getMsg().size() == 0) {
+                        last_records.setText("0 step");
+                    } else {
+                        try {
 //                        Log.i("RESPONSE: ", String.valueOf(response.body().getMsg().get(0)));
-                        JSONObject x = new JSONObject(response.body().getMsg().get(0).toString());
-                        last_records.setText(Integer.parseInt(String.valueOf(Math.round(Float.parseFloat(x.getString("stepofday"))))) + " steps");
-                    } catch (JSONException e) {
-                        //Convert failed exception
-                        Toast.makeText(getContext(), "Can't convert response to JSONObject", Toast.LENGTH_LONG).show();
+                            JSONObject x = new JSONObject(response.body().getMsg().get(0).toString());
+                            last_records.setText(x.getInt("stepofday") + " steps");
+                        } catch (JSONException e) {
+                            //Convert failed exception
+                            Toast.makeText(getContext(), "Can't convert response to JSONObject", Toast.LENGTH_LONG).show();
+                        }
                     }
                 } else if (response.body().getCode() == 205) {
                     startActivity(new Intent(getContext(), LoginActivity.class));

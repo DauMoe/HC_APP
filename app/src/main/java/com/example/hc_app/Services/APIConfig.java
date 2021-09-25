@@ -18,4 +18,8 @@ public interface APIConfig {
     //Get Last Record
     @POST("api/last_record")
     Call<RespObj> GetRecords(@Body RequestBody body);
+
+    //Update steps
+    @POST("api/new_steps")
+    Call<RespObj> UpdateStep(@Body RequestBody body);
 }

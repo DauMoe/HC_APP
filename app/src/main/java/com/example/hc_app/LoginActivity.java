@@ -3,6 +3,7 @@ package com.example.hc_app;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -31,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     AppCompatButton login_btn;
     EditText username, password;
     private SharedPreferences pref;
+    ProgressDialog p;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,7 @@ public class LoginActivity extends AppCompatActivity {
         login_btn   = findViewById(R.id.login_btn);
         username    = findViewById(R.id.login_email);
         password    = findViewById(R.id.login_password);
+        p           = new ProgressDialog(this);
 
         APIConfig x = RetrofitConfig.JSONconfig().create(APIConfig.class);
 
@@ -57,6 +60,8 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Fill password!", Toast.LENGTH_LONG).show();
                 return;
             }
+            p.setMessage("Login...");
+            p.show();
 
             //Create request body
             //Doc: https://stackoverflow.com/questions/21398598/how-to-post-raw-whole-json-in-the-body-of-a-retrofit-request
@@ -67,12 +72,12 @@ public class LoginActivity extends AppCompatActivity {
                     .create(okhttp3.MediaType.parse("application/json; charset=utf-8"),(new JSONObject(mReq)).toString());
 
             //Create call API
-            DisableBtn(true);
             Call<RespObj> g = x.login(body);
             g.enqueue(new Callback<RespObj>() {
                 @Override
                 public void onResponse(Call<RespObj> call, Response<RespObj> response) {
                     if (response.body().getCode() == 200) {
+                        p.hide();
                         //Login OK
                         try {
                             //Convert response msg to JSON
@@ -81,18 +86,19 @@ public class LoginActivity extends AppCompatActivity {
                                 //Store token and username to SharedPreferences
                                     pref.edit().putInt(USER_ID, a.getInt("userID")).commit() &&
                                     pref.edit().putString(USER_TOKEN, a.getString("token")).commit() &&
-                                    pref.edit().putString(USERNAME, a.getString("username")).commit()
+                                    pref.edit().putString(USERNAME, a.getString("username")).commit() &&
+                                    pref.edit().putFloat(STEPRANGE, (float) a.getDouble("step_range")).commit() &&
+                                    pref.edit().putFloat(BMI, (float) a.getDouble("BMI")).commit()
                             ) {
                                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
                                 finish();
                             }
                         } catch (JSONException e) {
                             //Convert failed exception
-                            Toast.makeText(getApplicationContext(), "Can't convert response to JSONObject", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
                         }
                     } else {
                         //Another err. Msg will be returned by server
-                        DisableBtn(false);
                         Toast.makeText(getApplicationContext(), response.body().getMsg().get(0).toString(), Toast.LENGTH_LONG).show();
                     }
                     //DEBUG AREA
@@ -102,8 +108,8 @@ public class LoginActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<RespObj> call, Throwable t) {
-                    DisableBtn(false);
-                    Toast.makeText(getApplicationContext(), "Call API failed!", Toast.LENGTH_LONG).show();
+                    p.hide();
+                    Toast.makeText(getApplicationContext(), String.valueOf(t), Toast.LENGTH_LONG).show();
 
                     //DEBUG AREA
                     Log.i("CODE:", String.valueOf(call));
@@ -111,15 +117,5 @@ public class LoginActivity extends AppCompatActivity {
                 }
             });
         });
-    }
-
-    private void DisableBtn(boolean state) {
-        if (!state) {
-            login_btn.setClickable(true);
-            login_btn.setFocusable(true);
-        } else {
-            login_btn.setClickable(false);
-            login_btn.setFocusable(false);
-        }
     }
 }

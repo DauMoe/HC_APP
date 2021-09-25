@@ -10,19 +10,20 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    <ImageView
-        android:id="@+id/main_sc"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_margin="30dp"
-        android:src="@drawable/back" />
+<!--    <ImageView-->
+<!--        android:id="@+id/main_sc"-->
+<!--        android:layout_width="25dp"-->
+<!--        android:layout_height="25dp"-->
+<!--        android:layout_margin="30dp"-->
+<!--        android:src="@drawable/back" />-->
     <TextView
-       android:layout_marginLeft="90dp"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:fontFamily="@font/cabin"
+        android:gravity="center"
         android:text="Step"
+        android:layout_marginTop="10dp"
         android:textColor="#fff"
         android:textSize="30sp" />
     </LinearLayout>
@@ -37,19 +38,22 @@
     <LinearLayout
         android:layout_marginTop="50dp"
         android:paddingLeft="30dp"
+        android:paddingRight="30dp"
         android:background="@drawable/form_step"
         android:id="@+id/step_area"
         android:visibility="visible"
         android:orientation="vertical"
         android:layout_gravity="center"
-        android:layout_width="360dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
         android:layout_height="300dp">
         <TextView
             android:textSize="24sp"
             android:fontFamily="@font/cabin"
             android:textColor="#2D956F"
             android:paddingTop="10dp"
-            android:text="Day"
+            android:text="Today:"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <LinearLayout
@@ -74,7 +78,7 @@
             android:textColor="#2D956F"
             android:background="#F19F9F"
             android:id="@+id/step_counter"
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:gravity="center"
             android:layout_height="wrap_content"
             android:fontFamily="@font/arimamaduraiextrabold"
@@ -91,6 +95,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
+            android:id="@+id/step_distance"
             android:layout_marginRight="40dp"
             android:fontFamily="@font/cabin"
             android:textSize="32sp"
@@ -98,13 +103,13 @@
             android:text="0,0km"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
-        <TextView
-            android:fontFamily="@font/cabin"
-            android:textSize="32sp"
-            android:textColor="#000"
-            android:text="0 kcal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+<!--        <TextView-->
+<!--            android:fontFamily="@font/cabin"-->
+<!--            android:textSize="32sp"-->
+<!--            android:textColor="#000"-->
+<!--            android:text="0 kcal"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"/>-->
 
     </LinearLayout>
 
