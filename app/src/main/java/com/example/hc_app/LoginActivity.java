@@ -9,7 +9,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.ArrayMap;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.hc_app.Models.RespObj;
@@ -32,6 +34,7 @@ public class LoginActivity extends AppCompatActivity {
     AppCompatButton login_btn;
     EditText username, password;
     private SharedPreferences pref;
+    TextView signup;
     ProgressDialog p;
 
     @Override
@@ -43,9 +46,12 @@ public class LoginActivity extends AppCompatActivity {
         login_btn   = findViewById(R.id.login_btn);
         username    = findViewById(R.id.login_email);
         password    = findViewById(R.id.login_password);
+        signup      = findViewById(R.id.signup);
         p           = new ProgressDialog(this);
 
         APIConfig x = RetrofitConfig.JSONconfig().create(APIConfig.class);
+
+        signup.setOnClickListener(v -> startActivity(new Intent(LoginActivity.this, SignupActivity.class)));
 
         login_btn.setOnClickListener(v -> {
             String userTxt  = username.getText().toString().trim();

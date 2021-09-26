@@ -69,9 +69,10 @@
         android:fontFamily="@font/cabin"
         android:textColor="#fff"/>
     <TextView
+        android:id="@+id/signup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Forget Password?"
+        android:text="Signup?"
         android:textColor="@color/white"
         android:fontFamily="@font/cabin"
         android:textSize="15sp"

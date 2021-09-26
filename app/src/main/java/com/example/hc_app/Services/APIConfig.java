@@ -11,6 +11,10 @@ public interface APIConfig {
     @POST("api/login")
     Call<RespObj> login(@Body RequestBody body);
 
+    //Create user
+    @POST("api/new_user")
+    Call<RespObj> CreateUser(@Body RequestBody body);
+
     //GetSteps
     @POST("api/list_steps")
     Call<RespObj> GetSteps(@Body RequestBody body);
