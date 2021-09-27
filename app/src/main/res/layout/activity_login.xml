@@ -68,15 +68,30 @@
         android:text="Log in"
         android:fontFamily="@font/cabin"
         android:textColor="#fff"/>
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_marginBottom="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Don’t have an account? "
+            android:textColor="@color/white"
+            android:fontFamily="@font/cabin"
+            android:textSize="15sp" />
     <TextView
+        android:layout_marginLeft="5dp"
         android:id="@+id/signup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Signup?"
         android:textColor="@color/white"
         android:fontFamily="@font/cabin"
-        android:textSize="15sp"
-        android:layout_marginBottom="50dp"/>
+        android:textSize="15sp"/>
+    </LinearLayout>
 
 
 </LinearLayout>

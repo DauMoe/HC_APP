@@ -40,7 +40,7 @@
         android:layout_gravity="center"
         android:background="#fff"
         android:layout_width="350dp"
-        android:layout_height="400dp">
+        android:layout_height="470dp">
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="wrap_content"
@@ -150,15 +150,16 @@
                 android:layout_width="300dp"
                 android:layout_height="43dp"/>
         </LinearLayout>
+        <androidx.appcompat.widget.AppCompatButton
+           android:layout_marginTop="40dp"
+            android:layout_gravity="center"
+            android:text="Save"
+            android:fontFamily="@font/cabin"
+            android:textColor="#fff"
+            android:background="@drawable/rectangle_3"
+            android:layout_width="150dp"
+            android:layout_height="50dp"/>
     </LinearLayout>
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_marginTop="20dp"
-        android:layout_gravity="center"
-        android:text="Save"
-        android:fontFamily="@font/cabin"
-        android:textColor="#fff"
-        android:background="@drawable/rectangle_3"
-        android:layout_width="150dp"
-        android:layout_height="50dp"/>
+
 
 </LinearLayout>
