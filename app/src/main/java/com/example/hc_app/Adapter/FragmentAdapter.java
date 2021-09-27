@@ -1,4 +1,4 @@
-package com.example.hc_app;
+package com.example.hc_app.Adapter;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -22,9 +22,9 @@ public class FragmentAdapter extends FragmentStatePagerAdapter {
             case 0:
                 return new StepFragment();
             case 1:
-                return new ExerciseFragment();
-            case 2:
                 return new HistoryFragment();
+            case 2:
+                return new ExerciseFragment();
             case 3:
                 return new ProfileFragment();
             default:

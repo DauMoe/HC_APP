@@ -112,6 +112,7 @@ public class ExerciseFragment extends Fragment {
         group           = v.findViewById(R.id.group);
         recom           = v.findViewById(R.id.recom);
 
+        single.setChecked(true);
         single.setOnClickListener(v1 -> GetSingleExercises());
         group.setOnClickListener(v1 -> GetGroupExercise());
         recom.setOnClickListener(v1 -> GetRecommendExercise());
@@ -133,7 +134,7 @@ public class ExerciseFragment extends Fragment {
                         Exercise f = new Gson().fromJson(i.toString(), Exercise.class);
                         data.add(f);
                     }
-                    adapter.setData(data);
+                    adapter.setData(data, false);
                 } else {
                     //Another err. Msg will be returned by server
                     Toast.makeText(getContext(), response.body().getMsg().get(0).toString(), Toast.LENGTH_LONG).show();
@@ -167,7 +168,7 @@ public class ExerciseFragment extends Fragment {
                         Exercise f = new Gson().fromJson(i.toString(), Exercise.class);
                         data.add(f);
                     }
-                    adapter.setData(data);
+                    adapter.setData(data, true);
                 } else {
                     //Another err. Msg will be returned by server
                     Toast.makeText(getContext(), response.body().getMsg().get(0).toString(), Toast.LENGTH_LONG).show();
@@ -207,7 +208,7 @@ public class ExerciseFragment extends Fragment {
                         Exercise f = new Gson().fromJson(i.toString(), Exercise.class);
                         data.add(f);
                     }
-                    adapter.setData(data);
+                    adapter.setData(data, false);
                 } else {
                     //Another err. Msg will be returned by server
                     Toast.makeText(getContext(), response.body().getMsg().get(0).toString(), Toast.LENGTH_LONG).show();

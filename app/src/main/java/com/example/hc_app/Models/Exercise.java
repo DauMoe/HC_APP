@@ -6,8 +6,17 @@ public class Exercise implements Serializable {
     private int excerID;
     private float bmi_from, bmi_to;
     private String excer_name, description;
+    private boolean isGroup;
 
     public Exercise() {}
+
+    public boolean isGroup() {
+        return isGroup;
+    }
+
+    public void setGroup(boolean group) {
+        isGroup = group;
+    }
 
     public int getExcerID() {
         return excerID;

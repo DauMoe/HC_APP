@@ -40,6 +40,6 @@ public interface APIConfig {
     Call<RespObj> GetGroupExercise();
 
     //Get detail exercise
-    @POST("api/list_exer")
+    @POST("api/get_detail_exercise")
     Call<RespObj> GetDetailExercise(@Body RequestBody body);
 }

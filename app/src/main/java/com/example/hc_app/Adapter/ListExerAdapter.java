@@ -15,18 +15,22 @@ import com.example.hc_app.DetailExerActivity;
 import com.example.hc_app.Models.Exercise;
 import com.example.hc_app.R;
 
+import org.json.JSONObject;
+
 import java.util.List;
 
 public class ListExerAdapter extends RecyclerView.Adapter<ListExerAdapter.DetailExerViewHolder> {
     private Context context;
     private List<Exercise> data;
+    boolean isGroup;
 
     public ListExerAdapter(Context context) {
         this.context = context;
     }
 
-    public void setData(List<Exercise> x) {
+    public void setData(List<Exercise> x, boolean group) {
         this.data = x;
+        this.isGroup = group;
         notifyDataSetChanged();
     }
 
@@ -45,6 +49,7 @@ public class ListExerAdapter extends RecyclerView.Adapter<ListExerAdapter.Detail
         holder.exer_desc.setText((item.getDescription() != null && !item.getDescription().isEmpty()) ? item.getDescription() : "Chưa có mô tả");
         holder.item.setOnClickListener(v -> {
             Intent i = new Intent(context, DetailExerActivity.class);
+            item.setGroup(isGroup);
             i.putExtra("data", item);
             context.startActivity(i);
         });
