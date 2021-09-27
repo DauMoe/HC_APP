@@ -26,4 +26,20 @@ public interface APIConfig {
     //Update steps
     @POST("api/new_steps")
     Call<RespObj> UpdateStep(@Body RequestBody body);
+
+    //Get recommend exercise
+    @POST("api/list_recom_exer")
+    Call<RespObj> GetRecommend(@Body RequestBody body);
+
+    //Get list exercise
+    @POST("api/list_exer")
+    Call<RespObj> GetListExercise();
+
+    //Get list group exercise
+    @POST("api/get_group_exercise")
+    Call<RespObj> GetGroupExercise();
+
+    //Get detail exercise
+    @POST("api/get_detail_exercise")
+    Call<RespObj> GetDetailExercise(@Body RequestBody body);
 }

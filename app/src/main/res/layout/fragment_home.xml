@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/vector"
     android:paddingTop="30dp"
-    tools:context=".Fragments.HomeFragment">
+    tools:context=".Fragments.StepFragment">
 
 <!--    <LinearLayout-->
 <!--        android:layout_width="match_parent"-->
@@ -56,9 +56,9 @@
         android:paddingLeft="20dp"
         android:paddingRight="20dp">
         <TextView
-            android:text="TODAY:"
+            android:text="Total steps today:"
             android:textStyle="bold"
-            android:textColor="#1E57AE"
+            android:textColor="#4E5CA8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20dp"/>
