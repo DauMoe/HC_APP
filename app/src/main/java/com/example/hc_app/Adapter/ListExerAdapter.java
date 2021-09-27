@@ -42,7 +42,7 @@ public class ListExerAdapter extends RecyclerView.Adapter<ListExerAdapter.Detail
         Exercise item = data.get(position);
         if (item == null) return;
         holder.exer_name.setText(item.getExcer_name() + " (BMI: " + item.getBmi_from() + " - " + item.getBmi_to() + ")");
-        holder.exer_desc.setText((item.getDescription() != null) ? item.getDescription() : "Chưa có mô tả");
+        holder.exer_desc.setText((item.getDescription() != null && !item.getDescription().isEmpty()) ? item.getDescription() : "Chưa có mô tả");
         holder.item.setOnClickListener(v -> {
             Intent i = new Intent(context, DetailExerActivity.class);
             i.putExtra("data", item);
