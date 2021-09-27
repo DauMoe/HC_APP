@@ -16,43 +16,46 @@
         android:src="@drawable/imgperson"
         android:layout_width="100dp"
         android:layout_height="80dp"/>
-        <TextView
-           android:textColor="#000"
-            android:layout_marginLeft="20dp"
-            android:fontFamily="@font/cabin"
-            android:textSize="30sp"
-            android:layout_gravity="bottom"
-            android:text="Username"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <ImageView
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="10dp"
-            android:layout_gravity="bottom"
-            android:src="@drawable/ic_edit"
-            android:layout_width="30dp"
-            android:layout_height="25dp"/>
     </LinearLayout>
     <LinearLayout
         android:orientation="vertical"
         android:padding="20dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="30dp"
         android:layout_gravity="center"
         android:background="#fff"
         android:layout_width="350dp"
-        android:layout_height="470dp">
+        android:layout_height="450dp">
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <TextView
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:fontFamily="@font/cabin"
                 android:textColor="#B3000000"
-                android:text="Date of Birth"
+                android:text="UserName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <EditText
+                android:textSize="16sp"
+                android:fontFamily="@font/cabin"
+                android:textColor="#000"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textSize="16sp"
+                android:fontFamily="@font/cabin"
+                android:textColor="#B3000000"
+                android:text="Age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:textSize="16sp"
                 android:fontFamily="@font/cabin"
                 android:textColor="#000"
                 android:layout_width="300dp"
@@ -60,34 +63,21 @@
         </LinearLayout>
         <LinearLayout
             android:layout_marginTop="10dp"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <TextView
-                android:layout_marginRight="20dp"
-                android:textSize="18sp"
-                android:fontFamily="@font/cabin"
                 android:textColor="#B3000000"
-                android:text="Gender"
+                android:fontFamily="@font/cabin"
+                android:textSize="16sp"
+                android:layout_marginRight="10dp"
+                android:text="Steps One Meter:"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
-            <RadioGroup
-                android:layout_marginTop="10dp"
-                android:layout_gravity="center"
-                android:orientation="horizontal"
+            <TextView
+                android:text="10"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <com.google.android.material.radiobutton.MaterialRadioButton
-                    android:layout_width="100dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_height="40dp"
-                    android:text="Male"/>
-                <com.google.android.material.radiobutton.MaterialRadioButton
-                    android:layout_width="100dp"
-                    android:checked="true"
-                    android:text="Female"
-                    android:layout_height="40dp"/>
-            </RadioGroup>
+                android:layout_height="wrap_content"/>
         </LinearLayout>
         <LinearLayout
             android:layout_marginTop="10dp"
@@ -99,13 +89,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
             <TextView
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:fontFamily="@font/cabin"
                 android:textColor="#B3000000"
                 android:text="Height"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <EditText
+                android:textSize="16sp"
                 android:fontFamily="@font/cabin"
                 android:textColor="#000"
                 android:layout_width="100dp"
@@ -117,13 +108,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:fontFamily="@font/cabin"
                     android:textColor="#B3000000"
                     android:text="Weight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <EditText
+                    android:textSize="16sp"
                     android:fontFamily="@font/cabin"
                     android:textColor="#000"
                     android:layout_width="100dp"
@@ -136,29 +128,30 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <TextView
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:fontFamily="@font/cabin"
                 android:textColor="#B3000000"
                 android:text="BMI"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
+                android:textSize="16sp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/bmi"
                 android:fontFamily="@font/cabin"
                 android:textColor="#000"
                 android:layout_width="300dp"
-                android:layout_height="43dp"/>
+                android:layout_height="40dp"/>
         </LinearLayout>
         <androidx.appcompat.widget.AppCompatButton
-           android:layout_marginTop="40dp"
+           android:layout_marginTop="25dp"
             android:layout_gravity="center"
             android:text="Save"
             android:fontFamily="@font/cabin"
             android:textColor="#fff"
             android:background="@drawable/rectangle_3"
-            android:layout_width="150dp"
-            android:layout_height="50dp"/>
+            android:layout_width="100dp"
+            android:layout_height="45dp"/>
     </LinearLayout>
 
 
