@@ -137,6 +137,18 @@ public class StepFragment extends Fragment {
             });
         });
 
+
+
+        YAxis rightYAxis = step_chart.getAxisRight();
+        rightYAxis.setEnabled(false);
+        YAxis leftYAxis = step_chart.getAxisLeft();
+        leftYAxis.setEnabled(false);
+        XAxis topXAxis = step_chart.getXAxis();
+        topXAxis.setEnabled(false);
+        XAxis xAxis = step_chart.getXAxis();
+        xAxis.setEnabled(true);
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+
         //init timestamp
         Calendar c = Calendar.getInstance();
         c.set(Calendar.HOUR_OF_DAY, 0);
@@ -154,17 +166,6 @@ public class StepFragment extends Fragment {
         Long starttime              = h.getTimeInMillis();
         h.add(MONTH, -1);
         Long endtime                = h.getTime().getTime();
-
-        YAxis rightYAxis = step_chart.getAxisRight();
-        rightYAxis.setEnabled(false);
-        YAxis leftYAxis = step_chart.getAxisLeft();
-        leftYAxis.setEnabled(false);
-        XAxis topXAxis = step_chart.getXAxis();
-        topXAxis.setEnabled(false);
-        XAxis xAxis = step_chart.getXAxis();
-        xAxis.setEnabled(true);
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-
 
         //String setter in x-Axis
         step_chart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(TimeStamp));
@@ -220,8 +221,8 @@ public class StepFragment extends Fragment {
     }
 
     private void DrawStepsHistory(Long starttime, Long endtime) {
-        starttime = 1632070800000L;
-        endtime = 1632675600000L;
+//        starttime = 1632070800000L;
+//        endtime = 1632675600000L;
         Log.e("START-END: ", starttime + ": " + endtime);
         Map<String, Object> mReq  = new ArrayMap<>();
         mReq.put("userID", pref.getInt(USER_ID, 0));
@@ -236,12 +237,16 @@ public class StepFragment extends Fragment {
             public void onResponse(Call<RespObj> call, Response<RespObj> response) {
                 if (response.body().getCode() == 200) {
                     //Start draw chart
+                    Log.e("SIZE OF ARR: ", String.valueOf(response.body().getMsg().size()));
                     if (response.body().getMsg().size() == 0) {
+                        Log.e("INSIDE: ", String.valueOf(response.body().getMsg().size()));
                         StepsData.clear();
                         TimeStamp.clear();
+                        dataSets.clear();
                         Toast.makeText(getContext(), "No step today!", Toast.LENGTH_SHORT).show();
+                        return;
                     } else {
-                        for (int i=0; i<response.body().getMsg().size(); i++) {
+                        for (int i = 0; i < response.body().getMsg().size(); i++) {
                             ChartData v = new Gson().fromJson(response.body().getMsg().get(i).toString(), ChartData.class);
                             StepsData.add(new Entry(i, v.getTotal_step()));
                             TimeStamp.add(v.getStarttime());
