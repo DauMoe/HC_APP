@@ -42,4 +42,8 @@ public interface APIConfig {
     //Get detail exercise
     @POST("api/get_detail_exercise")
     Call<RespObj> GetDetailExercise(@Body RequestBody body);
+
+    //Get chart data
+    @POST("api/get_chart_data")
+    Call<RespObj> GetChartData(@Body RequestBody body);
 }
