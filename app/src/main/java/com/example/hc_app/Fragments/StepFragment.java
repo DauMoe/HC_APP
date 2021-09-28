@@ -139,15 +139,7 @@ public class StepFragment extends Fragment {
 
 
 
-        YAxis rightYAxis = step_chart.getAxisRight();
-        rightYAxis.setEnabled(false);
-        YAxis leftYAxis = step_chart.getAxisLeft();
-        leftYAxis.setEnabled(false);
-        XAxis topXAxis = step_chart.getXAxis();
-        topXAxis.setEnabled(false);
-        XAxis xAxis = step_chart.getXAxis();
-        xAxis.setEnabled(true);
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+
 
         //init timestamp
         Calendar c = Calendar.getInstance();
@@ -166,15 +158,7 @@ public class StepFragment extends Fragment {
         Long starttime              = h.getTimeInMillis();
         h.add(MONTH, -1);
         Long endtime                = h.getTime().getTime();
-
-        //String setter in x-Axis
-        step_chart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(TimeStamp));
-        step_chart.animateX(2000);
-        step_chart.invalidate();
-        step_chart.getLegend().setEnabled(true);
-        step_chart.getDescription().setText("Date");
         DrawStepsHistory(starttime, endtime);
-
         return v;
     }
 
@@ -263,6 +247,21 @@ public class StepFragment extends Fragment {
 
                     LineData data = new LineData(dataSets);
                     step_chart.setData(data);
+                    YAxis rightYAxis = step_chart.getAxisRight();
+                    rightYAxis.setEnabled(false);
+                    YAxis leftYAxis = step_chart.getAxisLeft();
+                    leftYAxis.setEnabled(false);
+                    XAxis topXAxis = step_chart.getXAxis();
+                    topXAxis.setEnabled(false);
+                    XAxis xAxis = step_chart.getXAxis();
+                    xAxis.setEnabled(true);
+                    xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+                    //String setter in x-Axis
+                    step_chart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(TimeStamp));
+                    step_chart.animateX(2000);
+                    step_chart.invalidate();
+                    step_chart.getLegend().setEnabled(true);
+                    step_chart.getDescription().setText("Date");
 
                 } else if (response.body().getCode() == 205) {
                     startActivity(new Intent(getContext(), LoginActivity.class));
