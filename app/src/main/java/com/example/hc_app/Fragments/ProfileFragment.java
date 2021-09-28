@@ -1,5 +1,6 @@
 package com.example.hc_app.Fragments;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,6 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.hc_app.R;
+import com.example.hc_app.Services.APIConfig;
+import com.example.hc_app.Services.RetrofitConfig;
+
+import static android.content.Context.MODE_PRIVATE;
+import static com.example.hc_app.Models.Config.LOGIN_DATA;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -48,6 +54,7 @@ public class ProfileFragment extends Fragment {
         return fragment;
     }
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +68,8 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_profile, container, false);
+        View v          = inflater.inflate(R.layout.fragment_profile, container, false);
+
         return v;
     }
 }

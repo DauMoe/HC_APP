@@ -229,7 +229,7 @@ public class StepFragment extends Fragment {
         mReq.put("token", pref.getString(USER_TOKEN, ""));
         mReq.put("starttime", starttime);
         mReq.put("endtime", endtime);
-        RequestBody body        = RequestBody
+        RequestBody body = RequestBody
                 .create(okhttp3.MediaType.parse("application/json; charset=utf-8"),(new JSONObject(mReq)).toString());
         Call<RespObj> g = x.GetChartData(body);
         g.enqueue(new Callback<RespObj>() {

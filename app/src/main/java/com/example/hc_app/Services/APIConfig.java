@@ -46,4 +46,8 @@ public interface APIConfig {
     //Get chart data
     @POST("api/get_chart_data")
     Call<RespObj> GetChartData(@Body RequestBody body);
+
+    //Get list history
+    @POST("api/list_history")
+    Call<RespObj> GetListHistory(@Body RequestBody body);
 }
