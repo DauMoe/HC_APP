@@ -252,7 +252,7 @@ public class StepFragment extends Fragment {
                     set1.setColor(Color.rgb(31, 236, 180));
                     set1.setValueTextColor(Color.rgb(7, 169, 125));
                     set1.setValueTextSize(10f);
-                    set1.setMode(LineDataSet.Mode.LINEAR);
+                    set1.setMode(LineDataSet.Mode.CUBIC_BEZIER);
                     set1.setLineWidth(2f);
                     dataSets.add(set1);
 
