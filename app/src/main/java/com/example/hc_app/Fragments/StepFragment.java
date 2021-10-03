@@ -155,9 +155,9 @@ public class StepFragment extends Fragment {
 
         //Get step history one month
         Calendar h                  = Calendar.getInstance();
-        Long starttime              = h.getTimeInMillis();
+        Long endtime                = h.getTimeInMillis();
         h.add(MONTH, -1);
-        Long endtime                = h.getTime().getTime();
+        Long starttime              = h.getTime().getTime();
         DrawStepsHistory(starttime, endtime);
         return v;
     }
