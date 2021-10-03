@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/vector"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -24,7 +23,7 @@
         android:gravity="center"
         android:text="Step"
         android:layout_marginTop="10dp"
-        android:textColor="#fff"
+        android:textColor="#000"
         android:textSize="30sp" />
     </LinearLayout>
 
@@ -47,36 +46,18 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_width="match_parent"
-        android:layout_height="300dp">
+        android:layout_height="200dp">
         <TextView
             android:textSize="24sp"
             android:fontFamily="@font/cabin"
-            android:textColor="#2D956F"
+            android:textColor="#000"
             android:paddingTop="10dp"
             android:text="Today:"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:layout_marginTop="10dp"
-                android:paddingLeft="10dp"
-                android:src="@drawable/walk"
-                android:layout_width="80dp"
-                android:layout_height="110dp"/>
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/step_stop"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/btn_stop"
-                android:text="Stop"
-                android:textColor="#fff"
-                android:layout_width="100dp"
-                android:layout_height="45dp"/>
-        </LinearLayout>
+
         <TextView
-            android:textColor="#2D956F"
-            android:background="#F19F9F"
+            android:textColor="#000"
             android:id="@+id/step_counter"
             android:layout_width="match_parent"
             android:gravity="center"
@@ -86,31 +67,45 @@
             android:paddingBottom="10dp"
             android:textSize="30sp"
             android:textStyle="bold"/>
+        <LinearLayout
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/step_distance"
+                android:fontFamily="@font/cabin"
+                android:textSize="32sp"
+                android:textColor="#000"
+                android:text="0,0km"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <!--        <TextView-->
+            <!--            android:fontFamily="@font/cabin"-->
+            <!--            android:textSize="32sp"-->
+            <!--            android:textColor="#000"-->
+            <!--            android:text="0 kcal"-->
+            <!--            android:layout_width="wrap_content"-->
+            <!--            android:layout_height="wrap_content"/>-->
+
+        </LinearLayout>
 
     </LinearLayout>
-    <LinearLayout
-        android:layout_marginTop="30dp"
-        android:gravity="center"
-        android:orientation="horizontal"
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.MapFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/step_distance"
-            android:layout_marginRight="40dp"
-            android:fontFamily="@font/cabin"
-            android:textSize="32sp"
-            android:textColor="#000"
-            android:text="0,0km"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-<!--        <TextView-->
-<!--            android:fontFamily="@font/cabin"-->
-<!--            android:textSize="32sp"-->
-<!--            android:textColor="#000"-->
-<!--            android:text="0 kcal"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"/>-->
+        android:layout_height="250dp"/>
 
-    </LinearLayout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_gravity="center"
+        android:id="@+id/step_stop"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/border"
+        android:text="Stop"
+        android:textColor="#fff"
+        android:layout_width="120dp"
+        android:layout_height="45dp"/>
 
 </LinearLayout>
