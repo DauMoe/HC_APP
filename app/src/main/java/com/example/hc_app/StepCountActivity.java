@@ -19,7 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.hc_app.Fragments.MapFragment;
+//import com.example.hc_app.Fragments.MapFragment;
 import com.example.hc_app.Models.RespObj;
 import com.example.hc_app.Services.APIConfig;
 import com.example.hc_app.Services.RetrofitConfig;
@@ -39,7 +39,7 @@ import static com.example.hc_app.Models.Config.STEPRANGE;
 import static com.example.hc_app.Models.Config.USER_ID;
 
 public class StepCountActivity extends AppCompatActivity {
-    private MapFragment mapFragment;
+//    private MapFragment mapFragment;
     AppCompatButton step_stop;
     TextView step_counter, step_distance;
     LinearLayout step_area;
@@ -86,7 +86,7 @@ public class StepCountActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_step_count);
         FragmentManager fragmentManager = this.getSupportFragmentManager();
-        this.mapFragment = (MapFragment) fragmentManager.findFragmentById(R.id.map);
+//        this.mapFragment = (MapFragment) fragmentManager.findFragmentById(R.id.map);
 
         step_stop       = findViewById(R.id.step_stop);
         step_counter    = findViewById(R.id.step_counter);

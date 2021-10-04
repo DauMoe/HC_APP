@@ -137,10 +137,6 @@ public class StepFragment extends Fragment {
             });
         });
 
-
-
-
-
         //init timestamp
         Calendar c = Calendar.getInstance();
         c.set(Calendar.HOUR_OF_DAY, 0);
@@ -241,7 +237,7 @@ public class StepFragment extends Fragment {
                     set1.setColor(Color.rgb(31, 236, 180));
                     set1.setValueTextColor(Color.rgb(7, 169, 125));
                     set1.setValueTextSize(10f);
-                    set1.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+                    set1.setMode(LineDataSet.Mode.LINEAR);
                     set1.setLineWidth(2f);
                     dataSets.add(set1);
 
