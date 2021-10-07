@@ -25,7 +25,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/care"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -34,7 +34,13 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyC2F5Pg7pxxfIipvAn8pWZ7j6x7dydg4e4"/>
         <activity android:name=".DetailExerActivity"></activity>
-        <activity android:name=".StepCountActivity"/>
+        <activity android:name=".StepCountActivity">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+        </activity>
         <activity android:name=".SignupActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
