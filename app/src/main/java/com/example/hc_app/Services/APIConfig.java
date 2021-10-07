@@ -54,4 +54,8 @@ public interface APIConfig {
     //Get list history
     @POST("api/list_history")
     Call<RespObj> GetListHistory(@Body RequestBody body);
+
+    //Get detail exercises of gr by ID
+    @POST("api/get_detail_by_groupID")
+    Call<RespObj> GetListExByID(@Body RequestBody body);
 }

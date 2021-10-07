@@ -11,8 +11,6 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
-
     <uses-permission
         android:name="android.permission.WRITE_SETTINGS"
         tools:ignore="ProtectedPermissions" />
@@ -30,16 +28,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HC_app">
+        <activity android:name=".DetailExActivity"></activity>
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyC2F5Pg7pxxfIipvAn8pWZ7j6x7dydg4e4"/>
-        <activity android:name=".DetailExerActivity"></activity>
-        <activity android:name=".StepCountActivity">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
+            android:value="AIzaSyC2F5Pg7pxxfIipvAn8pWZ7j6x7dydg4e4" />
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+        <activity android:name=".DetailExerActivity" />
+        <activity android:name=".StepCountActivity">
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity android:name=".SignupActivity" />
         <activity android:name=".LoginActivity">

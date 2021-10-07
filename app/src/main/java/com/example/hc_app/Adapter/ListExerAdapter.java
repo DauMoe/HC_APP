@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.hc_app.DetailExActivity;
 import com.example.hc_app.DetailExerActivity;
 import com.example.hc_app.Models.Exercise;
 import com.example.hc_app.R;
@@ -48,8 +49,13 @@ public class ListExerAdapter extends RecyclerView.Adapter<ListExerAdapter.Detail
         holder.exer_name.setText(item.getExcer_name() + " (BMI: " + item.getBmi_from() + " - " + item.getBmi_to() + ")");
         holder.exer_desc.setText((item.getDescription() != null && !item.getDescription().isEmpty()) ? item.getDescription() : "Chưa có mô tả");
         holder.item.setOnClickListener(v -> {
-            Intent i = new Intent(context, DetailExerActivity.class);
-            item.setGroup(isGroup);
+            Intent i = null;
+            if (!isGroup) {
+                i = new Intent(context, DetailExerActivity.class);
+            } else {
+                i = new Intent(context, DetailExActivity.class);
+            }
+            if (i == null) return;
             i.putExtra("data", item.getExcerID());
             context.startActivity(i);
         });
