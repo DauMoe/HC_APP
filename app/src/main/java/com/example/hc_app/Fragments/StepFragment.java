@@ -137,18 +137,6 @@ public class StepFragment extends Fragment {
             });
         });
 
-
-
-        YAxis rightYAxis = step_chart.getAxisRight();
-        rightYAxis.setEnabled(false);
-        YAxis leftYAxis = step_chart.getAxisLeft();
-        leftYAxis.setEnabled(false);
-        XAxis topXAxis = step_chart.getXAxis();
-        topXAxis.setEnabled(false);
-        XAxis xAxis = step_chart.getXAxis();
-        xAxis.setEnabled(true);
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-
         //init timestamp
         Calendar c = Calendar.getInstance();
         c.set(Calendar.HOUR_OF_DAY, 0);
@@ -163,18 +151,10 @@ public class StepFragment extends Fragment {
 
         //Get step history one month
         Calendar h                  = Calendar.getInstance();
-        Long starttime              = h.getTimeInMillis();
+        Long endtime                = h.getTimeInMillis();
         h.add(MONTH, -1);
-        Long endtime                = h.getTime().getTime();
-
-        //String setter in x-Axis
-        step_chart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(TimeStamp));
-        step_chart.animateX(2000);
-        step_chart.invalidate();
-        step_chart.getLegend().setEnabled(true);
-        step_chart.getDescription().setText("Date");
+        Long starttime              = h.getTime().getTime();
         DrawStepsHistory(starttime, endtime);
-
         return v;
     }
 
@@ -229,7 +209,7 @@ public class StepFragment extends Fragment {
         mReq.put("token", pref.getString(USER_TOKEN, ""));
         mReq.put("starttime", starttime);
         mReq.put("endtime", endtime);
-        RequestBody body        = RequestBody
+        RequestBody body = RequestBody
                 .create(okhttp3.MediaType.parse("application/json; charset=utf-8"),(new JSONObject(mReq)).toString());
         Call<RespObj> g = x.GetChartData(body);
         g.enqueue(new Callback<RespObj>() {
@@ -257,12 +237,27 @@ public class StepFragment extends Fragment {
                     set1.setColor(Color.rgb(31, 236, 180));
                     set1.setValueTextColor(Color.rgb(7, 169, 125));
                     set1.setValueTextSize(10f);
-                    set1.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+                    set1.setMode(LineDataSet.Mode.LINEAR);
                     set1.setLineWidth(2f);
                     dataSets.add(set1);
 
                     LineData data = new LineData(dataSets);
                     step_chart.setData(data);
+                    YAxis rightYAxis = step_chart.getAxisRight();
+                    rightYAxis.setEnabled(false);
+                    YAxis leftYAxis = step_chart.getAxisLeft();
+                    leftYAxis.setEnabled(false);
+                    XAxis topXAxis = step_chart.getXAxis();
+                    topXAxis.setEnabled(false);
+                    XAxis xAxis = step_chart.getXAxis();
+                    xAxis.setEnabled(true);
+                    xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+                    //String setter in x-Axis
+                    step_chart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(TimeStamp));
+                    step_chart.animateX(2000);
+                    step_chart.invalidate();
+                    step_chart.getLegend().setEnabled(true);
+                    step_chart.getDescription().setText("Date");
 
                 } else if (response.body().getCode() == 205) {
                     startActivity(new Intent(getContext(), LoginActivity.class));

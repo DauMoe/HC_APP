@@ -4,7 +4,6 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/vector"
     android:paddingTop="30dp"
     tools:context=".Fragments.StepFragment">
 
@@ -50,28 +49,31 @@
 <!--            android:layout_height="wrap_content"/>-->
 <!--    </LinearLayout>-->
     <LinearLayout
-        android:orientation="horizontal"
+        android:layout_margin="15dp"
+        android:background="@drawable/border"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="20dp"
         android:paddingRight="20dp">
         <TextView
+            android:fontFamily="@font/cabin"
+            android:layout_gravity="center"
             android:text="Total steps today:"
-            android:textStyle="bold"
-            android:textColor="#4E5CA8"
+            android:textColor="#fff"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20dp"/>
+            android:textSize="20sp"/>
         <TextView
             android:id="@+id/last_records"
             android:layout_width="match_parent"
             android:gravity="center"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/arimamaduraiextrabold"
+            android:fontFamily="@font/cabin"
             android:text="0 step"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:textSize="30sp"
+            android:textSize="35sp"
             android:textStyle="bold"
             android:textColor="@color/white"/>
     </LinearLayout>

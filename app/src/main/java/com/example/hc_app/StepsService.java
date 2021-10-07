@@ -36,7 +36,6 @@ public class StepsService extends android.app.Service implements SensorEventList
     @Override
     public void onCreate() {
         super.onCreate();
-        initNotification();
         initTodayData();
         initBroadcastReceiver();
         new Thread(new Runnable() {
@@ -101,7 +100,7 @@ public class StepsService extends android.app.Service implements SensorEventList
 
     private void initTodayData() {
         mCurrentStep = 0;
-        updateNotification();
+        updateStepCount();
     }
 
     private void initBroadcastReceiver() {
@@ -153,32 +152,7 @@ public class StepsService extends android.app.Service implements SensorEventList
         registerReceiver(mBroadcastReceiver, filter);
     }
 
-    private void initNotification() {
-//        mBuilder = new NotificationCompat.Builder(this, "MY_CHANNEL_ID");
-//        mBuilder.setContentTitle(getResources().getString(R.string.app_name))
-//                .setContentText("The number of steps today: " + mCurrentStep + " step")
-//                .setContentIntent(getDefaultIntent(Notification.FLAG_ONGOING_EVENT))
-//                .setWhen(System.currentTimeMillis())
-//                .setPriority(Notification.PRIORITY_DEFAULT)
-//                .setAutoCancel(false)
-//                .setOngoing(true)
-//                .setSmallIcon(R.mipmap.ic_launcher);
-//        Notification notification = mBuilder.build();
-//        mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-//        startForeground(mNotifyIdStep, notification);
-    }
-
-    private void updateNotification() {
-//        Intent hangIntent = new Intent(this, MainActivity.class);
-//        PendingIntent hangPendingIntent =
-//                PendingIntent.getActivity(this, 0, hangIntent, PendingIntent.FLAG_CANCEL_CURRENT);
-//        Notification notification =
-//                mBuilder.setContentTitle(getResources().getString(R.string.app_name))
-//                        .setContentText("The number of steps today: " + mCurrentStep + " step")
-//                        .setWhen(System.currentTimeMillis())
-//                        .setContentIntent(hangPendingIntent)
-//                        .build();
-//        mNotificationManager.notify(mNotifyIdStep, notification);
+    private void updateStepCount() {
         if (mCallback != null) {
             mCallback.updateUi(mCurrentStep);
         }
@@ -187,26 +161,13 @@ public class StepsService extends android.app.Service implements SensorEventList
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
         switch (mStepSensorType) {
-            case Sensor.TYPE_STEP_COUNTER:
-                int tempStep = (int) sensorEvent.values[0];
-                android.util.Log.d(TAG, "tempStep = " + tempStep);
-                if (!mHasRecord) {
-                    mHasRecord = true;
-                    mHasStepCount = tempStep;
-                } else {
-                    int thisStepCount = tempStep - mHasStepCount;
-                    int thisStep = thisStepCount - mPreviousStepCount;
-                    mCurrentStep += thisStep;
-                    mPreviousStepCount = thisStepCount;
-                }
-                break;
             case Sensor.TYPE_STEP_DETECTOR:
                 if (sensorEvent.values[0] == 1.0) {
                     mCurrentStep++;
                 }
                 break;
         }
-        updateNotification();
+        updateStepCount();
     }
 
     @Override
