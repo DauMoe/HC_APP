@@ -50,7 +50,7 @@ public class ListExerAdapter extends RecyclerView.Adapter<ListExerAdapter.Detail
         holder.item.setOnClickListener(v -> {
             Intent i = new Intent(context, DetailExerActivity.class);
             item.setGroup(isGroup);
-            i.putExtra("data", item);
+            i.putExtra("data", item.getExcerID());
             context.startActivity(i);
         });
     }
