@@ -4,112 +4,149 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
+    android:weightSum="3"
     android:orientation="vertical"
     tools:context=".StepCountActivity">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-<!--    <ImageView-->
-<!--        android:id="@+id/main_sc"-->
-<!--        android:layout_width="25dp"-->
-<!--        android:layout_height="25dp"-->
-<!--        android:layout_margin="30dp"-->
-<!--        android:src="@drawable/back" />-->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:fontFamily="@font/cabin"
-        android:gravity="center"
-        android:text="Step"
-        android:layout_marginTop="10dp"
-        android:textColor="#000"
-        android:textSize="30sp" />
-    </LinearLayout>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/start_step"
-        android:layout_width="21dp"
-        android:layout_height="25dp"
-        android:backgroundTint="#FFEB3B"
-        android:text="Start!"
-        android:visibility="gone" />
-    <LinearLayout
-        android:layout_marginTop="50dp"
-        android:paddingLeft="30dp"
-        android:paddingRight="30dp"
-        android:background="@drawable/form_step"
-        android:id="@+id/step_area"
-        android:visibility="visible"
-        android:orientation="vertical"
-        android:layout_gravity="center"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="200dp">
-        <TextView
-            android:textSize="24sp"
-            android:fontFamily="@font/cabin"
-            android:textColor="#000"
-            android:paddingTop="10dp"
-            android:text="Today:"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:textColor="#000"
-            android:id="@+id/step_counter"
-            android:layout_width="match_parent"
-            android:gravity="center"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/arimamaduraiextrabold"
-            android:text="0 step"
-            android:paddingBottom="10dp"
-            android:textSize="30sp"
-            android:textStyle="bold"/>
-        <LinearLayout
-            android:layout_marginTop="30dp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/step_distance"
-                android:fontFamily="@font/cabin"
-                android:textSize="32sp"
-                android:textColor="#000"
-                android:text="0,0km"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <!--        <TextView-->
-            <!--            android:fontFamily="@font/cabin"-->
-            <!--            android:textSize="32sp"-->
-            <!--            android:textColor="#000"-->
-            <!--            android:text="0 kcal"-->
-            <!--            android:layout_width="wrap_content"-->
-            <!--            android:layout_height="wrap_content"/>-->
-
-        </LinearLayout>
-
-    </LinearLayout>
     <fragment
+        android:layout_weight="3"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:map="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         tools:context=".StepCountActivity" />
 
+
+    <LinearLayout
+        android:gravity="center"
+        android:weightSum="3"
+        android:id="@+id/step_area"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:layout_weight="1"
+        android:background="@drawable/border"
+        android:orientation="horizontal"
+        android:visibility="visible">
+
+
+        <LinearLayout
+            android:gravity="center"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/step_distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/cabin"
+            android:gravity="center"
+            android:text="0,0"
+            android:textColor="#fff"
+            android:textSize="24sp" />
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/cabin"
+                android:gravity="center"
+                android:text="m"
+                android:textColor="#fff"
+                android:textSize="18sp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+
+                android:id="@+id/step_counter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/cabin"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="#fff"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+            <TextView
+                android:textSize="18sp"
+                android:text="Steps"
+                android:textColor="#fff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        <TextView
+            android:gravity="center"
+            android:textColor="#fff"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:textSize="24sp"
+            android:fontFamily="@font/cabin"
+            android:text="00:00:00"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+            <TextView
+                android:gravity="center"
+                android:textColor="#fff"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:textSize="18sp"
+                android:fontFamily="@font/cabin"
+                android:text="Time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <!--        <TextView-->
+        <!--            android:fontFamily="@font/cabin"-->
+        <!--            android:textSize="32sp"-->
+        <!--            android:textColor="#000"-->
+        <!--            android:text="0 kcal"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"/>-->
+
+    </LinearLayout>
+<LinearLayout
+    android:gravity="center"
+    android:padding="16dp"
+    android:layout_marginTop="10dp"
+    android:weightSum="2"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+<!--    <androidx.appcompat.widget.AppCompatButton-->
+<!--        android:layout_marginRight="10dp"-->
+<!--        android:textColor="#fff"-->
+<!--        android:fontFamily="@font/cabin"-->
+<!--        android:layout_weight="1"-->
+<!--        android:layout_width="80dp"-->
+<!--        android:background="#43A047"-->
+<!--        android:id="@+id/start_step"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:text="Start!" -->
+<!--        android:visibility="gone"/>-->
     <androidx.appcompat.widget.AppCompatButton
         android:layout_gravity="center"
+        android:layout_width="80dp"
+        android:layout_weight="1"
         android:id="@+id/step_stop"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/border"
         android:text="Stop"
+        android:background="#E53935"
         android:textColor="#fff"
-        android:layout_width="120dp"
-        android:layout_height="45dp"/>
+        android:layout_height="50dp"/>
+</LinearLayout>
 
 </LinearLayout>

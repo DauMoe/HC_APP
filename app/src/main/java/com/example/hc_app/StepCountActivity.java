@@ -1,13 +1,5 @@
 package com.example.hc_app;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-
 import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.ComponentName;
@@ -19,8 +11,6 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
-import android.location.Address;
-import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -28,18 +18,21 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.util.ArrayMap;
 import android.util.Log;
-import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-//import com.example.hc_app.Fragments.MapFragment;
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentActivity;
+
 import com.example.hc_app.Models.RespObj;
 import com.example.hc_app.Services.APIConfig;
 import com.example.hc_app.Services.RetrofitConfig;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
@@ -48,9 +41,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.Calendar;
-import java.util.List;
 import java.util.Map;
 
 import okhttp3.RequestBody;
@@ -61,6 +52,8 @@ import retrofit2.Response;
 import static com.example.hc_app.Models.Config.LOGIN_DATA;
 import static com.example.hc_app.Models.Config.STEPRANGE;
 import static com.example.hc_app.Models.Config.USER_ID;
+
+//import com.example.hc_app.Fragments.MapFragment;
 
 public class StepCountActivity extends FragmentActivity {
     AppCompatButton step_stop;
@@ -98,11 +91,12 @@ public class StepCountActivity extends FragmentActivity {
         p               = new ProgressDialog(this);
         curStep         = 0;
 
-        step_counter.setText("0 step");
-        step_distance.setText("0m");
+        step_counter.setText("0");
+        step_distance.setText("0");
         showStepCount(0, 0);
         setupService();
         step_stop.setOnClickListener(v -> UpdateSteps());
+
     }
 
     private BitmapDescriptor BitmapFromVector(Context context, int vectorResId) {
@@ -146,8 +140,8 @@ public class StepCountActivity extends FragmentActivity {
         if (currentCounts < totalStepNum) {
             currentCounts = totalStepNum;
         }
-        step_counter.setText(currentCounts + " steps");
-        step_distance.setText(String.format("%2f m", (float) (currentCounts * step_range)));
+        step_counter.setText(currentCounts + "");
+        step_distance.setText(String.format("%2f", (float) (currentCounts * step_range)));
     }
 
     private void setupService() {

@@ -2,34 +2,43 @@
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:orientation="vertical"
-    android:background="@drawable/vector"
+    android:padding="16dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <LinearLayout
+        android:padding="16dp"
+        android:background="#FA7B53"
         android:gravity="center"
         android:layout_marginBottom="10dp"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="120dp">
+        android:layout_height="wrap_content">
     <ImageView
         android:layout_marginTop="20dp"
         android:layout_gravity="center"
         android:src="@drawable/imgperson"
         android:layout_width="100dp"
         android:layout_height="80dp"/>
+        <TextView
+            android:layout_marginTop="10dp"
+            android:text="Change avatar"
+            android:fontFamily="@font/cabin"
+            android:textColor="#1976D2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 
     <LinearLayout
         android:orientation="vertical"
         android:padding="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_gravity="center"
         android:background="#fff"
-        android:layout_width="350dp"
-        android:layout_height="430dp">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
         <LinearLayout
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
                 android:textColor="#B3000000"
@@ -44,13 +53,13 @@
                 android:inputType="number"
                 android:textSize="16sp"
                 android:fontFamily="@font/cabin"
-                android:layout_width="50dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
         <LinearLayout
             android:layout_marginTop="10dp"
             android:orientation="vertical"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
                 android:textSize="16sp"
@@ -65,41 +74,56 @@
                 android:textSize="16sp"
                 android:fontFamily="@font/cabin"
                 android:textColor="#000"
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
 
         <LinearLayout
+            android:weightSum="2"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:layout_marginTop="10dp"
             android:orientation="horizontal"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <LinearLayout
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_weight="1"
                 android:orientation="vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
             <TextView
+                android:layout_gravity="center"
                 android:textSize="16sp"
                 android:fontFamily="@font/cabin"
                 android:textColor="#B3000000"
                 android:text="Height (cm)"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
-            <EditText
-                android:id="@+id/profile_height"
-                android:textSize="16sp"
-                android:inputType="number"
-                android:fontFamily="@font/cabin"
-                android:textColor="#000"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"/>
+
+                <EditText
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:id="@+id/profile_height"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/cabin"
+                    android:inputType="number"
+                    android:textColor="#000"
+                    android:textSize="16sp" />
             </LinearLayout>
             <LinearLayout
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_weight="1"
                 android:layout_marginLeft="100dp"
                 android:orientation="vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:layout_gravity="center"
+                    android:gravity="center"
                     android:textSize="16sp"
                     android:fontFamily="@font/cabin"
                     android:textColor="#B3000000"
@@ -107,12 +131,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <EditText
+                    android:layout_gravity="center"
+                    android:gravity="center"
                     android:id="@+id/profile_weight"
                     android:textSize="16sp"
                     android:fontFamily="@font/cabin"
                     android:inputType="number"
                     android:textColor="#000"
-                    android:layout_width="100dp"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
         </LinearLayout>
@@ -120,7 +146,7 @@
         <LinearLayout
             android:layout_marginTop="20dp"
             android:orientation="vertical"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
                 android:textSize="16sp"
@@ -130,14 +156,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
+                android:layout_marginLeft="10dp"
                 android:id="@+id/profile_bmi"
                 android:textSize="16sp"
                 android:gravity="center"
+                android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/bmi"
                 android:fontFamily="@font/cabin"
                 android:textColor="#000"
-                android:layout_width="300dp"
+                android:layout_width="250dp"
                 android:layout_height="40dp"/>
         </LinearLayout>
         <androidx.appcompat.widget.AppCompatButton
