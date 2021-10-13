@@ -1,19 +1,14 @@
 package com.example.hc_app;
 
-import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.util.ArrayMap;
@@ -22,22 +17,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import com.example.hc_app.Models.RespObj;
 import com.example.hc_app.Services.APIConfig;
 import com.example.hc_app.Services.RetrofitConfig;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.json.JSONObject;
 
@@ -65,8 +53,8 @@ public class StepCountActivity extends FragmentActivity {
     Float step_range;
     ProgressDialog p;
     int curStep;
-    MyLocationListener mylistener;
-    GoogleMap mMap;
+//    MyLocationListener mylistener;
+//    GoogleMap mMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,12 +62,12 @@ public class StepCountActivity extends FragmentActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_step_count);
-        SupportMapFragment mapFrag = (SupportMapFragment) this.getSupportFragmentManager().findFragmentById(R.id.map);
-        mapFrag.getMapAsync(googleMap -> {
-            mMap = googleMap;
-            Log.e("MAP_STATE", "READY");
-            GetCurrentLocation();
-        });
+//        SupportMapFragment mapFrag = (SupportMapFragment) this.getSupportFragmentManager().findFragmentById(R.id.map);
+//        mapFrag.getMapAsync(googleMap -> {
+//            mMap = googleMap;
+//            Log.e("MAP_STATE", "READY");
+//            GetCurrentLocation();
+//        });
 
         step_stop       = findViewById(R.id.step_stop);
         step_counter    = findViewById(R.id.step_counter);
@@ -108,17 +96,17 @@ public class StepCountActivity extends FragmentActivity {
         return BitmapDescriptorFactory.fromBitmap(bitmap);
     }
 
-    private class MyLocationListener implements LocationListener {
-        @Override
-        public void onLocationChanged(Location location) {
-            double longitude = location.getLongitude();
-            double latitude = location.getLatitude();
-            Log.e("GPS", location.getLatitude() + ", " + location.getLongitude());
-            LatLng here = new LatLng(latitude, longitude);
-            mMap.addMarker(new MarkerOptions().position(here).title("Current Location")).setIcon(BitmapFromVector(getApplicationContext(), R.drawable.ic_people));
-            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 18.2f));
-        }
-    }
+//    private class MyLocationListener implements LocationListener {
+//        @Override
+//        public void onLocationChanged(Location location) {
+//            double longitude = location.getLongitude();
+//            double latitude = location.getLatitude();
+//            Log.e("GPS", location.getLatitude() + ", " + location.getLongitude());
+//            LatLng here = new LatLng(latitude, longitude);
+//            mMap.addMarker(new MarkerOptions().position(here).title("Current Location")).setIcon(BitmapFromVector(getApplicationContext(), R.drawable.ic_people));
+//            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 18.2f));
+//        }
+//    }
 
     private ServiceConnection mServiceConnection = new
             ServiceConnection() {
@@ -150,46 +138,46 @@ public class StepCountActivity extends FragmentActivity {
         startService(intent);
     }
 
-    private void GetCurrentLocation() {
-        if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                &&
-                ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            Log.e("NO_GPS: ", "GPS IS NOT ALLOWED!");
+//    private void GetCurrentLocation() {
+//        if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+//                &&
+//                ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//            Log.e("NO_GPS: ", "GPS IS NOT ALLOWED!");
+//
+//            //Request permissions
+//            ActivityCompat.requestPermissions(StepCountActivity.this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 200);
+//        } else {
+//            //Doc: https://stackoverflow.com/questions/2227292/how-to-get-latitude-and-longitude-of-the-mobile-device-in-android (11 Upvotes)
+//            LocationManager locationManager = (LocationManager) getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
+//            Location location;
+//            while(true) {
+//                location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+//                if (location != null) {
+//                    break;
+//                }
+//            }
+//            mylistener = new MyLocationListener();
+//            mylistener.onLocationChanged(location);
+//            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, mylistener);
+////            locationManager.removeUpdates(mylistener);
+//        }
+//    }
 
-            //Request permissions
-            ActivityCompat.requestPermissions(StepCountActivity.this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 200);
-        } else {
-            //Doc: https://stackoverflow.com/questions/2227292/how-to-get-latitude-and-longitude-of-the-mobile-device-in-android (11 Upvotes)
-            LocationManager locationManager = (LocationManager) getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
-            Location location;
-            while(true) {
-                location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-                if (location != null) {
-                    break;
-                }
-            }
-            mylistener = new MyLocationListener();
-            mylistener.onLocationChanged(location);
-            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, mylistener);
-//            locationManager.removeUpdates(mylistener);
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        //Check permissions
-        switch (requestCode) {
-            case 200:
-                if (grantResults.length > 0) {
-                    boolean fine_location = grantResults[0] == PackageManager.PERMISSION_GRANTED;
-                    boolean coarse_location = grantResults[0] == PackageManager.PERMISSION_GRANTED;
-                    if (fine_location && coarse_location) {
-                        GetCurrentLocation();
-                    }
-                }
-        }
-    }
+    //@Override
+//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//        //Check permissions
+//        switch (requestCode) {
+//            case 200:
+//                if (grantResults.length > 0) {
+//                    boolean fine_location = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+//                    boolean coarse_location = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+//                    if (fine_location && coarse_location) {
+//                        GetCurrentLocation();
+//                    }
+//                }
+//        }
+//    }
 
     private void UpdateSteps() {
         p.setMessage("Progress...");

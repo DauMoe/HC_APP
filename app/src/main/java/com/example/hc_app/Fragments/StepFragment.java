@@ -4,10 +4,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
-
-import androidx.core.util.Pair;
-import androidx.fragment.app.Fragment;
-
 import android.util.ArrayMap;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,9 +13,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.core.util.Pair;
+import androidx.fragment.app.Fragment;
+
 import com.example.hc_app.LoginActivity;
 import com.example.hc_app.Models.ChartData;
-import com.example.hc_app.Models.ExerHistory;
 import com.example.hc_app.Models.RespObj;
 import com.example.hc_app.R;
 import com.example.hc_app.Services.APIConfig;
@@ -246,7 +244,7 @@ public class StepFragment extends Fragment {
                     YAxis rightYAxis = step_chart.getAxisRight();
                     rightYAxis.setEnabled(false);
                     YAxis leftYAxis = step_chart.getAxisLeft();
-                    leftYAxis.setEnabled(false);
+                    leftYAxis.setEnabled(true);
                     XAxis topXAxis = step_chart.getXAxis();
                     topXAxis.setEnabled(false);
                     XAxis xAxis = step_chart.getXAxis();
@@ -258,6 +256,8 @@ public class StepFragment extends Fragment {
                     step_chart.invalidate();
                     step_chart.getLegend().setEnabled(true);
                     step_chart.getDescription().setText("Date");
+
+
 
                 } else if (response.body().getCode() == 205) {
                     startActivity(new Intent(getContext(), LoginActivity.class));

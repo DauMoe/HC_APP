@@ -13,10 +13,17 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
     <style name="Widget.MyApp.Chip.Choice" parent="Widget.MaterialComponents.Chip.Choice">
         <item name="materialThemeOverlay">@style/ThemeOverlay.MyApp.Chip.Choice</item>
     </style>
+
     <style name="ThemeOverlay.MyApp.Chip.Choice" parent="">
         <item name="elevationOverlayEnabled">false</item>
+    </style>
+
+    <style name="ThemeOverlay.HC_app.AppWidgetContainer" parent="">
+        <item name="appWidgetBackgroundColor">@color/light_blue_900</item>
+        <item name="appWidgetTextColor">@color/light_blue_200</item>
     </style>
 </resources>

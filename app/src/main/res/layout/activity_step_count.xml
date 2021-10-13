@@ -5,118 +5,48 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    android:weightSum="3"
     android:orientation="vertical"
     tools:context=".StepCountActivity">
-
-    <fragment
-        android:layout_weight="3"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:map="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/map"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:context=".StepCountActivity" />
 
 
     <LinearLayout
         android:gravity="center"
-        android:weightSum="3"
         android:id="@+id/step_area"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
         android:layout_gravity="center"
-        android:layout_marginTop="50dp"
-        android:layout_weight="1"
-        android:background="@drawable/border"
-        android:orientation="horizontal"
-        android:visibility="visible">
-
-
+        android:background="@drawable/circle"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_gravity="center"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/shoe"/>
         <LinearLayout
-            android:gravity="center"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/step_distance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/cabin"
-            android:gravity="center"
-            android:text="0,0"
-            android:textColor="#fff"
-            android:textSize="24sp" />
-            <TextView
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/cabin"
-                android:gravity="center"
-                android:text="m"
-                android:textColor="#fff"
-                android:textSize="18sp" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-            <TextView
 
+            <TextView
                 android:id="@+id/step_counter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cabin"
                 android:gravity="center"
                 android:text="0"
-                android:textColor="#fff"
+                android:textColor="#F4511E"
                 android:textSize="24sp"
                 android:textStyle="bold" />
             <TextView
                 android:textSize="18sp"
                 android:text="Steps"
-                android:textColor="#fff"
+                android:textColor="#CBF4511E"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
-        <LinearLayout
-            android:gravity="center"
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-        <TextView
-            android:gravity="center"
-            android:textColor="#fff"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:textSize="24sp"
-            android:fontFamily="@font/cabin"
-            android:text="00:00:00"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-            <TextView
-                android:gravity="center"
-                android:textColor="#fff"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:textSize="18sp"
-                android:fontFamily="@font/cabin"
-                android:text="Time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
-        <!--        <TextView-->
-        <!--            android:fontFamily="@font/cabin"-->
-        <!--            android:textSize="32sp"-->
-        <!--            android:textColor="#000"-->
-        <!--            android:text="0 kcal"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"/>-->
+
+
 
     </LinearLayout>
 <LinearLayout
@@ -138,15 +68,50 @@
 <!--        android:layout_height="50dp"-->
 <!--        android:text="Start!" -->
 <!--        android:visibility="gone"/>-->
+
+</LinearLayout>
+    <LinearLayout
+        android:background="@drawable/shadow"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="80dp">
+        <TextView
+            android:gravity="center"
+            android:textColor="#000"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:textSize="24sp"
+            android:fontFamily="@font/cabin"
+            android:text="00:00:00"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="25dp"
+        android:background="@drawable/shadow"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="80dp">
+        <TextView
+            android:id="@+id/step_distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/cabin"
+            android:gravity="center"
+            android:text="0,0 m"
+            android:textColor="#000"
+            android:textSize="24sp" />
+    </LinearLayout>
     <androidx.appcompat.widget.AppCompatButton
+        android:layout_marginTop="80dp"
         android:layout_gravity="center"
-        android:layout_width="80dp"
-        android:layout_weight="1"
+        android:layout_width="150dp"
         android:id="@+id/step_stop"
         android:text="Stop"
         android:background="#E53935"
         android:textColor="#fff"
         android:layout_height="50dp"/>
-</LinearLayout>
 
 </LinearLayout>

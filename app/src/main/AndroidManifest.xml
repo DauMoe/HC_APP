@@ -23,6 +23,7 @@
 
     <uses-feature android:name="android.hardware.sensor.accelerometer" />
 
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/care"
@@ -30,7 +31,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HC_app">
-        <activity android:name=".DetailExActivity"></activity>
+        <meta-data
+            android:name="com.google.android.actions"
+            android:resource="@xml/new_app_widget_info" />
+
+
+        <activity android:name=".DetailExActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
