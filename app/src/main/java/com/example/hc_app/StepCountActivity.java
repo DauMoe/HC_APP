@@ -13,10 +13,12 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.util.ArrayMap;
 import android.util.Log;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.AnyThread;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
@@ -26,6 +28,7 @@ import com.example.hc_app.Services.APIConfig;
 import com.example.hc_app.Services.RetrofitConfig;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.material.internal.ViewUtils;
 
 import org.json.JSONObject;
 
@@ -45,7 +48,7 @@ import static com.example.hc_app.Models.Config.USER_ID;
 
 public class StepCountActivity extends FragmentActivity {
     AppCompatButton step_stop;
-    TextView step_counter, step_distance;
+    TextView step_counter, step_distance, step_time;
     LinearLayout step_area;
     private boolean mIsBind;
     private SharedPreferences pref;
@@ -73,17 +76,21 @@ public class StepCountActivity extends FragmentActivity {
         step_counter    = findViewById(R.id.step_counter);
         step_area       = findViewById(R.id.step_area);
         step_distance   = findViewById(R.id.step_distance);
+        step_time       = findViewById(R.id.step_time);
         pref            = getApplicationContext().getSharedPreferences(LOGIN_DATA, MODE_PRIVATE);
         starttimestamp  = Calendar.getInstance().getTimeInMillis();
+        endtimestamp    = Calendar.getInstance().getTimeInMillis();
         step_range      = pref.getFloat(STEPRANGE, 0f);
         p               = new ProgressDialog(this);
         curStep         = 0;
 
         step_counter.setText("0");
         step_distance.setText("0");
+        step_time.setText("0");
         showStepCount(0, 0);
         setupService();
         step_stop.setOnClickListener(v -> UpdateSteps());
+
 
     }
 
@@ -124,12 +131,19 @@ public class StepCountActivity extends FragmentActivity {
                 public void onServiceDisconnected(ComponentName componentName) {}
             };
 
+
     public void showStepCount(int totalStepNum, int currentCounts) {
         if (currentCounts < totalStepNum) {
             currentCounts = totalStepNum;
         }
         step_counter.setText(currentCounts + "");
         step_distance.setText(String.format("%2f", (float) (currentCounts * step_range)));
+        long t = endtimestamp - starttimestamp;
+        String s1 = String.valueOf(t);
+        s1 = s1+"mili giây";
+        step_time.setText(s1);
+
+
     }
 
     private void setupService() {
