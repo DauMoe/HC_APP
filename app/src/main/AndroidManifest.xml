@@ -31,9 +31,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HC_app">
-        <meta-data
-            android:name="com.google.android.actions"
-            android:resource="@xml/new_app_widget_info" />
+
 
 
         <activity android:name=".DetailExActivity" />

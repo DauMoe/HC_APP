@@ -1,30 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     android:id="@+id/exer_item"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:padding="10dp"
     android:background="@drawable/bottom_line"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-    <TextView
-        android:id="@+id/ex_name"
-        android:text="Exercise name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textColor="#DD6038"
-        android:paddingBottom="5dp"
-        android:textSize="15dp"
-        />
+    <ImageView
+        android:id="@+id/ex_thum"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:gravity="center_vertical"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/ex_name"
+            android:text="Exercise name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="#DD6038"
+            android:paddingBottom="5dp"
+            android:textSize="15dp"
+            />
 
-    <TextView
-        android:id="@+id/ex_desc"
-        android:text="Exercise desc"
-        android:textSize="12dp"
-        android:textColor="#FBB8A3"
-        android:maxLines="10"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
+        <TextView
+            android:id="@+id/ex_desc"
+            android:text="Exercise desc"
+            android:textSize="12dp"
+            android:textColor="#FBB8A3"
+            android:maxLines="10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+    </LinearLayout>
 </LinearLayout>
