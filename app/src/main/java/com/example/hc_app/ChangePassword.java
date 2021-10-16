@@ -61,8 +61,8 @@ public class ChangePassword extends AppCompatActivity {
             p.show();
             Map<String, Object> mReq = new ArrayMap<>();
             mReq.put("username", pref.getString(USERNAME, null));
-            mReq.put("oldpass", oldpassTxt);
-            mReq.put("password", newpassTxt);
+            mReq.put("password", oldpassTxt);
+            mReq.put("newpass", newpassTxt);
             RequestBody body = RequestBody
                     .create(MediaType.parse("application/json; charset=utf-8"), (new JSONObject(mReq)).toString());
             Call<RespObj> g = x.ChangePass(body);
