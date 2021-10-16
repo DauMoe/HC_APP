@@ -58,4 +58,8 @@ public interface APIConfig {
     //Get detail exercises of gr by ID
     @POST("api/get_detail_by_groupID")
     Call<RespObj> GetListExByID(@Body RequestBody body);
+
+    //Rating
+    @POST("api/rating")
+    Call<RespObj> RatingExercise(@Body RequestBody body);
 }

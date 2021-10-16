@@ -80,7 +80,7 @@ public class ExerciseFragment extends Fragment {
         LinearLayoutManager manager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         p               = new ProgressDialog(getContext());
         exer_rcv        = v.findViewById(R.id.exer_rcv);
-        adapter         = new ListExerAdapter(getContext());
+        adapter         = new ListExerAdapter(getContext(), getActivity());
         filter_exercise = v.findViewById(R.id.filter_exercise);
         x               = RetrofitConfig.JSONconfig().create(APIConfig.class);
         pref            = getContext().getSharedPreferences(LOGIN_DATA, MODE_PRIVATE);
@@ -188,7 +188,7 @@ public class ExerciseFragment extends Fragment {
                         Exercise f = new Gson().fromJson(i.toString(), Exercise.class);
                         data.add(f);
                     }
-                    adapter.setData(data, false);
+                    adapter.setData(data, true);
                 } else {
                     //Another err. Msg will be returned by server
                     Toast.makeText(getContext(), response.body().getMsg().get(0).toString(), Toast.LENGTH_LONG).show();

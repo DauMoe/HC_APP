@@ -1,8 +1,10 @@
 package com.example.hc_app.Adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,11 +32,13 @@ import java.util.List;
 
 public class ListExerAdapter extends RecyclerView.Adapter<ListExerAdapter.DetailExerViewHolder> {
     private Context context;
+    private Activity activity;
     private List<Exercise> data;
     boolean isGroup;
 
-    public ListExerAdapter(Context context) {
+    public ListExerAdapter(Context context, Activity activity) {
         this.context = context;
+        this.activity = activity;
     }
 
     public void setData(List<Exercise> x, boolean group) {
@@ -78,11 +82,11 @@ public class ListExerAdapter extends RecyclerView.Adapter<ListExerAdapter.Detail
         holder.item.setOnClickListener(v -> {
             Intent i;
             if (!isGroup) {
-                i = new Intent(context, DetailExerActivity.class);
+                i = new Intent(activity, DetailExerActivity.class);
             } else {
-                i = new Intent(context, DetailExActivity.class);
+                i = new Intent(activity, DetailExActivity.class);
             }
-            if (i == null) return;
+            Log.e("ADAPTER_GRID", String.valueOf(item.getExcerID()));
             i.putExtra("data", item.getExcerID());
             context.startActivity(i);
         });

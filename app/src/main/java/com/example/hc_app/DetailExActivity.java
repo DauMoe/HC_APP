@@ -51,7 +51,7 @@ public class DetailExActivity extends AppCompatActivity {
         x               = RetrofitConfig.JSONconfig().create(APIConfig.class);
         p               = new ProgressDialog(this);
         empty           = findViewById(R.id.empty_ex);
-        adapter         = new ListExerAdapter(this);
+        adapter         = new ListExerAdapter(this, this);
         detail_ex       = findViewById(R.id.detail_gr_exercise);
 
         detail_ex.setLayoutManager(manager);

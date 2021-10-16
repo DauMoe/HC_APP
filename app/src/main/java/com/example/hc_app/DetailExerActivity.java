@@ -14,6 +14,9 @@ import android.os.Environment;
 import android.util.ArrayMap;
 import android.util.Base64;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -46,6 +49,9 @@ public class DetailExerActivity extends AppCompatActivity {
     static final int REQUEST_CODE = 100;
     int exerID;
     TextView title, desc;
+    RatingBar rating;
+    Button rating_btn;
+    int stars = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +65,52 @@ public class DetailExerActivity extends AppCompatActivity {
         detail_video    = findViewById(R.id.detail_video);
         title           = findViewById(R.id.detail_title);
         desc            = findViewById(R.id.detail_desc);
+        rating          = findViewById(R.id.rating_exercise);
+        rating_btn      = findViewById(R.id.submit_rating);
+
+        rating.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                stars = Math.round(rating);
+            }
+        });
+
+        rating_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Map<String, Object> mReq = new ArrayMap<>();
+                mReq.put("exerID", exerID);
+                mReq.put("star", stars);
+                RequestBody body = RequestBody
+                        .create(okhttp3.MediaType.parse("application/json; charset=utf-8"),(new JSONObject(mReq)).toString());
+
+                Call<RespObj> g = e.RatingExercise(body);
+
+                g.enqueue(new Callback<RespObj>() {
+                    @Override
+                    public void onResponse(Call<RespObj> call, Response<RespObj> response) {
+                        if (response.body().getCode() == 200) {
+                            Toast.makeText(DetailExerActivity.this, "Thanks for your rating!", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Log.i("RATING:", response.body().getMsg().toString());
+                            Toast.makeText(DetailExerActivity.this, response.body().getMsg().get(0).toString(), Toast.LENGTH_SHORT).show();
+                        }
+                        p.hide();
+                        Log.i("CODE:", String.valueOf(response.code()));
+                    }
+
+                    @Override
+                    public void onFailure(Call<RespObj> call, Throwable t) {
+                        p.hide();
+                        Toast.makeText(getApplicationContext(), String.valueOf(t), Toast.LENGTH_LONG).show();
+
+                        //DEBUG AREA
+                        Log.i("CODE:", String.valueOf(call));
+                        Log.i("ERR:", String.valueOf(t));
+                    }
+                });
+            }
+        });
 
 
         detail_video.setOnPreparedListener(mp -> mp.setLooping(true));
