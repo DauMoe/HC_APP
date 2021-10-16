@@ -171,6 +171,12 @@ public class ProfileFragment extends Fragment {
                     Toast.makeText(getContext(), "Fill all fields", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                try {
+                    Integer.parseInt(stepPmeter);
+                } catch (Exception e) {
+                    Toast.makeText(getContext(), "Num of step mush be a number!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 p.setMessage("Saving...");
                 p.show();
                 Map<String, Object> mReq = new ArrayMap<>();
@@ -180,7 +186,7 @@ public class ProfileFragment extends Fragment {
                 mReq.put("age", Integer.parseInt(ageTxt));
                 mReq.put("ava", "");
                 mReq.put("token", "");
-                mReq.put("stepsOneMeter", Integer.parseInt(stepPmeter));
+                mReq.put("stepsOneMeter", stepPmeter);
                 RequestBody body = RequestBody
                         .create(okhttp3.MediaType.parse("application/json; charset=utf-8"),(new JSONObject(mReq)).toString());
                 Call<RespObj> g= x.UpdateUserInfo(body);
@@ -231,7 +237,7 @@ public class ProfileFragment extends Fragment {
                     try {
                         JSONObject x = new JSONObject(response.body().getMsg().get(0).toString());
                         height.setText(String.valueOf(x.getDouble("height") * 100));
-                        profile_steppermeter.setText(String.valueOf(x.getDouble("step_range")));
+                        profile_steppermeter.setText(String.valueOf(Math.round(1/x.getDouble("step_range"))));
                         weight.setText(String.valueOf(x.getDouble("weight")));
                         profile_bmi.setText(String.valueOf(x.getDouble("bmi")));
                         age.setText(String.valueOf((int)x.getDouble("age")));
