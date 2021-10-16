@@ -25,6 +25,7 @@ import com.example.hc_app.Services.APIConfig;
 import com.example.hc_app.Services.RetrofitConfig;
 import com.google.android.material.internal.TextWatcherAdapter;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Map;
@@ -36,6 +37,7 @@ import retrofit2.Response;
 
 import static android.content.Context.MODE_PRIVATE;
 import static com.example.hc_app.Models.Config.LOGIN_DATA;
+import static com.example.hc_app.Models.Config.USERNAME;
 import static com.example.hc_app.Models.Config.USER_ID;
 
 /**
@@ -107,6 +109,8 @@ public class ProfileFragment extends Fragment {
         p                       = new ProgressDialog(getContext());
         x                       = RetrofitConfig.JSONconfig().create(APIConfig.class);
         pref                    = getContext().getSharedPreferences(LOGIN_DATA, MODE_PRIVATE);
+
+        GetUserInfo();
 
         height.addTextChangedListener(new TextWatcher() {
             @Override
@@ -209,5 +213,44 @@ public class ProfileFragment extends Fragment {
             }
         });
         return v;
+    }
+
+    private void GetUserInfo() {
+        p.setMessage("Loading...");
+        p.show();
+        Map<String, Object> mReq = new ArrayMap<>();
+        mReq.put("username", pref.getString(USERNAME, null));
+        RequestBody body = RequestBody
+                .create(okhttp3.MediaType.parse("application/json; charset=utf-8"),(new JSONObject(mReq)).toString());
+        Call<RespObj> g= x.GetUserInfo(body);
+
+        g.enqueue(new Callback<RespObj>() {
+            @Override
+            public void onResponse(Call<RespObj> call, Response<RespObj> response) {
+                if (response.body().getCode() == 200) {
+                    try {
+                        JSONObject x = new JSONObject(response.body().getMsg().get(0).toString());
+                        height.setText(String.valueOf(x.getDouble("height") * 100));
+                        profile_steppermeter.setText(String.valueOf(x.getDouble("step_range")));
+                        weight.setText(String.valueOf(x.getDouble("weight")));
+                        profile_bmi.setText(String.valueOf(x.getDouble("bmi")));
+                        age.setText(String.valueOf((int)x.getDouble("age")));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    Toast.makeText(getContext(), response.body().getMsg().get(0).toString(), Toast.LENGTH_SHORT).show();
+                }
+                Log.e("ERR_CODE", response.body().getMsg().get(0).toString());
+                p.hide();
+            }
+
+            @Override
+            public void onFailure(Call<RespObj> call, Throwable t) {
+                p.hide();
+                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.e("FAIL", t.getMessage());
+            }
+        });
     }
 }
