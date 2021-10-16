@@ -32,6 +32,7 @@ import com.google.android.material.internal.ViewUtils;
 
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Map;
 
@@ -56,6 +57,7 @@ public class StepCountActivity extends FragmentActivity {
     Float step_range;
     ProgressDialog p;
     int curStep;
+    SimpleDateFormat counter_formatter = new SimpleDateFormat("hh:mm:ss");
 //    MyLocationListener mylistener;
 //    GoogleMap mMap;
 
@@ -135,11 +137,11 @@ public class StepCountActivity extends FragmentActivity {
             currentCounts = totalStepNum;
         }
         step_counter.setText(currentCounts + "");
-        step_distance.setText(String.format("%2f", (float) (currentCounts * step_range)));
-        long t = endtimestamp - starttimestamp;
-        String s1 = String.valueOf(t);
-        s1 = s1+" ms";
-        step_time.setText(s1);
+        step_distance.setText(Math.round(currentCounts * step_range * 10000)/100 + " m");
+//        long t = endtimestamp - starttimestamp;
+//        String s1 = String.valueOf(t);
+//        s1 = s1+" ms";
+//        step_time.setText(s1);
     }
 
     private void setupService() {
