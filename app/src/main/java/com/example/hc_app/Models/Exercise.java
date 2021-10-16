@@ -5,10 +5,18 @@ import java.io.Serializable;
 public class Exercise implements Serializable {
     private int excerID;
     private float bmi_from, bmi_to;
-    private String excer_name, description;
+    private String excer_name, description, thumBase64;
     private boolean isGroup;
 
     public Exercise() {}
+
+    public String getThumBase64() {
+        return thumBase64;
+    }
+
+    public void setThumBase64(String thumBase64) {
+        this.thumBase64 = thumBase64;
+    }
 
     public boolean isGroup() {
         return isGroup;

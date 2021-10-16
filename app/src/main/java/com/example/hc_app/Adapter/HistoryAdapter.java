@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -55,12 +56,15 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
     public class HistoryViewHolder extends RecyclerView.ViewHolder {
         TextView txt_bold, txt_regular;
         LinearLayout item;
+        ImageView x;
 
         public HistoryViewHolder(@NonNull View itemView) {
             super(itemView);
             txt_bold        = itemView.findViewById(R.id.ex_name);
+            x               = itemView.findViewById(R.id.ex_thum);
             txt_regular     = itemView.findViewById(R.id.ex_desc);
             item            = itemView.findViewById(R.id.exer_item);
+            x.setVisibility(View.GONE);
         }
     }
 }

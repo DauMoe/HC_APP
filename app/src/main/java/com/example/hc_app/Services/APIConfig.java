@@ -19,6 +19,10 @@ public interface APIConfig {
     @POST("api/new_user")
     Call<RespObj> CreateUser(@Body RequestBody body);
 
+    //Get user info
+    @POST("api/get_user_info")
+    Call<RespObj> GetUserInfo(@Body RequestBody body);
+
     //GetSteps
     @POST("api/list_steps")
     Call<RespObj> GetSteps(@Body RequestBody body);
@@ -58,4 +62,8 @@ public interface APIConfig {
     //Get detail exercises of gr by ID
     @POST("api/get_detail_by_groupID")
     Call<RespObj> GetListExByID(@Body RequestBody body);
+
+    //Rating
+    @POST("api/rating")
+    Call<RespObj> RatingExercise(@Body RequestBody body);
 }
