@@ -14,6 +14,7 @@ import androidx.appcompat.widget.AppCompatButton;
 
 import com.example.hc_app.Models.RespObj;
 import com.example.hc_app.Services.APIConfig;
+import com.example.hc_app.Services.RetrofitConfig;
 
 import org.json.JSONObject;
 
@@ -44,6 +45,8 @@ public class ChangePassword extends AppCompatActivity {
         repeatPass = findViewById(R.id.repeat_pass);
         changePIN = findViewById(R.id.changePin_btn);
         pref = getSharedPreferences(LOGIN_DATA, MODE_PRIVATE);
+        x = RetrofitConfig.JSONconfig().create(APIConfig.class);
+        p = new ProgressDialog(this);
 
         changePIN.setOnClickListener(v -> {
             String oldpassTxt = oldpass.getText().toString();
@@ -57,7 +60,7 @@ public class ChangePassword extends AppCompatActivity {
                 Toast.makeText(this, "Password is not match", Toast.LENGTH_SHORT).show();
                 return;
             }
-
+            p.setMessage("Update password");
             p.show();
             Map<String, Object> mReq = new ArrayMap<>();
             mReq.put("username", pref.getString(USERNAME, null));
@@ -65,6 +68,7 @@ public class ChangePassword extends AppCompatActivity {
             mReq.put("newpass", newpassTxt);
             RequestBody body = RequestBody
                     .create(MediaType.parse("application/json; charset=utf-8"), (new JSONObject(mReq)).toString());
+            Log.e("REQ", mReq.toString());
             Call<RespObj> g = x.ChangePass(body);
             g.enqueue(new Callback<RespObj>() {
                 @Override
