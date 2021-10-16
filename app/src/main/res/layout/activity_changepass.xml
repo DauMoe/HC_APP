@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:background="@drawable/vector"
+    android:gravity="center"
+    android:onClick="goToAttract">
+    <ImageView
+        android:id="@+id/login_logo"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:layout_marginTop="70dp"
+        android:layout_width="250dp"
+        android:layout_height="100dp"
+        android:src="@drawable/care" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="4"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/oldpass"
+            android:inputType="textPassword"
+            android:layout_width="300dp"
+            android:layout_height="55dp"
+            android:background="@drawable/rectangle_1"
+            android:hint="current password"
+            android:fontFamily="@font/cabin"
+            android:textAlignment="center"
+            android:maxWidth="250dp" />
+
+        <EditText
+            android:textAlignment="center"
+            android:id="@+id/new_pass"
+            android:layout_width="300dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/rectangle_1"
+            android:hint="New Password"
+            android:fontFamily="@font/cabin"
+            android:inputType="textPassword" />
+        <EditText
+            android:textAlignment="center"
+            android:id="@+id/repeat_pass"
+            android:layout_width="300dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/rectangle_1"
+            android:hint="Repeat Password"
+            android:fontFamily="@font/cabin"
+            android:inputType="textPassword" />
+    </LinearLayout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/changePin_btn"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:background="@drawable/rectangle_3"
+        android:layout_marginBottom="50dp"
+        android:text="Change Password"
+        android:fontFamily="@font/cabin"
+        android:textColor="#fff"/>
+
+</LinearLayout>

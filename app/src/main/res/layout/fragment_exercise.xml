@@ -23,16 +23,19 @@
                 android:id="@+id/single"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:checked="true"
+                android:fontFamily="@font/cabin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Single exercises"/>
             <com.google.android.material.chip.Chip
+                android:fontFamily="@font/cabin"
                 android:id="@+id/group"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Group exercises"/>
             <com.google.android.material.chip.Chip
+                android:fontFamily="@font/cabin"
                 android:id="@+id/recom"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"

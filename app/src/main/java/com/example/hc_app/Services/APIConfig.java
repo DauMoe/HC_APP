@@ -66,4 +66,7 @@ public interface APIConfig {
     //Rating
     @POST("api/rating")
     Call<RespObj> RatingExercise(@Body RequestBody body);
+
+    @POST("api/change_pass")
+    Call<RespObj>ChangePass(@Body RequestBody body);
 }

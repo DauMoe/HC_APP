@@ -14,6 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="350dp"/>
         <TextView
+            android:fontFamily="@font/cabin"
             android:padding="10dp"
             android:layout_marginTop="10dp"
             android:id="@+id/detail_title"
@@ -25,6 +26,7 @@
             android:layout_height="wrap_content"/>
 
         <TextView
+            android:fontFamily="@font/cabin"
             android:padding="10dp"
             android:layout_marginTop="10dp"
             android:id="@+id/detail_desc"
@@ -34,6 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <TextView
+            android:fontFamily="@font/cabin"
             android:text="Rating this exercise:"
             android:padding="10dp"
             android:textSize="13dp"
@@ -51,6 +54,8 @@
             android:id="@+id/submit_rating"
             android:layout_marginTop="10dp"
             android:text="Submit"
+            android:fontFamily="@font/cabin"
+            android:backgroundTint="#E53935"
             android:textAllCaps="false"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>

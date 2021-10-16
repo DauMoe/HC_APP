@@ -3,31 +3,43 @@ package com.example.hc_app.Fragments;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.appcompat.widget.AppCompatButton;
-import androidx.fragment.app.Fragment;
-
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.ArrayMap;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
+
+import com.example.hc_app.ChangePassword;
 import com.example.hc_app.Models.RespObj;
 import com.example.hc_app.R;
 import com.example.hc_app.Services.APIConfig;
 import com.example.hc_app.Services.RetrofitConfig;
-import com.google.android.material.internal.TextWatcherAdapter;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.Map;
 
 import okhttp3.RequestBody;
@@ -35,6 +47,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 import static android.content.Context.MODE_PRIVATE;
 import static com.example.hc_app.Models.Config.LOGIN_DATA;
 import static com.example.hc_app.Models.Config.USERNAME;
@@ -89,11 +102,45 @@ public class ProfileFragment extends Fragment {
     }
 
     EditText profile_steppermeter, age, height, weight;
-    TextView profile_bmi;
+    TextView profile_bmi, choose_img, changePass;
+    ImageView mAvatar;
+    LinearLayout uploadImage;
+    static final int RESULT_LOAD_CODE = 100;
+    static final int READ_EXTERNAL_CODE = 200;
     AppCompatButton profile_save;
+    String base64Thum = "";
+
     ProgressDialog p;
     APIConfig x;
     SharedPreferences pref;
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.e("IMAGE_CODE", String.valueOf(requestCode));
+        if (requestCode == RESULT_LOAD_CODE){
+            Uri uri = data.getData();
+            if (uri != null){
+                try {
+                    InputStream is = getContext().getContentResolver().openInputStream(uri);
+                    Bitmap bitmap = BitmapFactory.decodeStream(is);
+                    mAvatar.setImageBitmap(bitmap);
+                    mAvatar.setVisibility(View.VISIBLE);
+                    base64Thum = toBase64(bitmap);
+                    Log.e("BASE64", base64Thum);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    private String toBase64(Bitmap bitmap) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG,30,baos);
+        byte[] b = baos.toByteArray();
+        return Base64.encodeToString(b, Base64.NO_WRAP);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -105,12 +152,24 @@ public class ProfileFragment extends Fragment {
         height                  = v.findViewById(R.id.profile_height);
         weight                  = v.findViewById(R.id.profile_weight);
         profile_bmi             = v.findViewById(R.id.profile_bmi);
+        choose_img              = v.findViewById(R.id.choose_image);
+        uploadImage             = v.findViewById(R.id.layoutAddImage);
+        mAvatar                 = v.findViewById(R.id.avatar);
+        changePass              = v.findViewById(R.id.change_pin);
         profile_save            = v.findViewById(R.id.profile_save);
         p                       = new ProgressDialog(getContext());
         x                       = RetrofitConfig.JSONconfig().create(APIConfig.class);
         pref                    = getContext().getSharedPreferences(LOGIN_DATA, MODE_PRIVATE);
 
         GetUserInfo();
+        uploadImage.setOnClickListener(v1 -> CheckPermission());
+        changePass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent x = new Intent(getContext(), ChangePassword.class);
+                getContext().startActivity(x);
+            }
+        });
 
         height.addTextChangedListener(new TextWatcher() {
             @Override
@@ -171,6 +230,10 @@ public class ProfileFragment extends Fragment {
                     Toast.makeText(getContext(), "Fill all fields", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                if (base64Thum.isEmpty()){
+                    Toast.makeText(getContext(),"Choose image", Toast.LENGTH_LONG);
+                    return;
+                }
                 try {
                     Integer.parseInt(stepPmeter);
                 } catch (Exception e) {
@@ -184,7 +247,7 @@ public class ProfileFragment extends Fragment {
                 mReq.put("tall", Float.parseFloat(heightTxt)/100);
                 mReq.put("weight", Float.parseFloat(weightTxt));
                 mReq.put("age", Integer.parseInt(ageTxt));
-                mReq.put("ava", "");
+                mReq.put("ava", base64Thum);
                 mReq.put("token", "");
                 mReq.put("stepsOneMeter", stepPmeter);
                 RequestBody body = RequestBody
@@ -219,6 +282,32 @@ public class ProfileFragment extends Fragment {
             }
         });
         return v;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode){
+            case READ_EXTERNAL_CODE:
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                    ReadImagesFromDevice();
+                }
+        }
+    }
+
+    private void CheckPermission(){
+        if (!(ActivityCompat.checkSelfPermission(getContext(), READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)) {
+            ActivityCompat.requestPermissions(getActivity(), new String[]{READ_EXTERNAL_STORAGE}, READ_EXTERNAL_CODE);
+        } else {
+            ReadImagesFromDevice();
+        }
+    }
+
+    private void ReadImagesFromDevice() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent,"Select Picture"),RESULT_LOAD_CODE);
     }
 
     private void GetUserInfo() {

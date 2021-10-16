@@ -13,18 +13,35 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     <ImageView
+        android:id="@+id/avatar"
         android:layout_marginTop="20dp"
         android:layout_gravity="center"
-        android:src="@drawable/imgperson"
         android:layout_width="100dp"
         android:layout_height="80dp"/>
-        <TextView
+        <LinearLayout
+            android:gravity="left"
+            android:orientation="horizontal"
             android:layout_marginTop="10dp"
-            android:text="Change avatar"
-            android:fontFamily="@font/cabin"
-            android:textColor="#1976D2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/layoutAddImage">
+            <TextView
+                android:id="@+id/choose_image"
+                android:text="Choose avatar"
+                android:fontFamily="@font/cabin"
+                android:textColor="#1976D2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/change_pin"
+                android:textColor="#1976D2"
+                android:gravity="right"
+                android:text="Change Password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+
     </LinearLayout>
 
     <LinearLayout

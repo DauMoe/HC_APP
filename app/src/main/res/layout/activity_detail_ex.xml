@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <TextView
+        android:fontFamily="@font/cabin"
         android:id="@+id/empty_ex"
         android:text="No exercise in this Group Exercise"
         android:gravity="center"
