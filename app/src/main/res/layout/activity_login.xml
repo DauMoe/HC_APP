@@ -11,7 +11,7 @@
         android:id="@+id/login_logo"
         android:layout_gravity="center"
         android:layout_weight="1"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="20dp"
         android:layout_width="250dp"
         android:layout_height="100dp"
         android:src="@drawable/care" />
@@ -19,7 +19,7 @@
     <LinearLayout
         android:id="@+id/login_ln1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="4"
         android:gravity="center"
         android:orientation="vertical">
@@ -28,7 +28,6 @@
             android:id="@+id/login_email"
             android:layout_width="300dp"
             android:layout_height="55dp"
-            android:text="moe1"
             android:background="@drawable/rectangle_1"
             android:hint="Username"
             android:fontFamily="@font/cabin"
@@ -39,7 +38,6 @@
             android:textAlignment="center"
             android:id="@+id/login_password"
             android:layout_width="300dp"
-            android:text="234"
             android:layout_height="55dp"
             android:layout_marginTop="40dp"
             android:background="@drawable/rectangle_1"
@@ -61,8 +59,29 @@
 
         <!--        </LinearLayout>-->
     </LinearLayout>
+    <LinearLayout
+        android:id="@+id/fingerLoading"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_gravity="center"
+            android:src="@drawable/icon_vantay"
+            android:layout_width="40dp"
+            android:layout_height="40dp"/>
+        <TextView
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textColor="#fff"
+            android:text="Use Touch ID"
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/login_btn"
+        android:layout_marginTop="20dp"
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:background="@drawable/rectangle_3"
