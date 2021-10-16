@@ -76,16 +76,18 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="80dp">
+
         <TextView
-            android:gravity="center"
-            android:textColor="#000"
+            android:id="@+id/step_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:textSize="24sp"
             android:fontFamily="@font/cabin"
+            android:gravity="center"
             android:text="00:00:00"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:textColor="#000"
+            android:textSize="24sp" />
     </LinearLayout>
     <LinearLayout
         android:layout_marginTop="25dp"
