@@ -90,8 +90,6 @@ public class StepCountActivity extends FragmentActivity {
         showStepCount(0, 0);
         setupService();
         step_stop.setOnClickListener(v -> UpdateSteps());
-
-
     }
 
     private BitmapDescriptor BitmapFromVector(Context context, int vectorResId) {
@@ -140,10 +138,8 @@ public class StepCountActivity extends FragmentActivity {
         step_distance.setText(String.format("%2f", (float) (currentCounts * step_range)));
         long t = endtimestamp - starttimestamp;
         String s1 = String.valueOf(t);
-        s1 = s1+"mili giây";
+        s1 = s1+" ms";
         step_time.setText(s1);
-
-
     }
 
     private void setupService() {

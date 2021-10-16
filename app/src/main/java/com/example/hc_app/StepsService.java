@@ -161,6 +161,18 @@ public class StepsService extends android.app.Service implements SensorEventList
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
         switch (mStepSensorType) {
+            case Sensor.TYPE_STEP_COUNTER:
+                int tempStep = (int) sensorEvent.values[0];
+                if (!mHasRecord) {
+                    mHasRecord = true;
+                    mHasStepCount = tempStep;
+                } else {
+                    int thisStepCount = tempStep - mHasStepCount;
+                    int thisStep = thisStepCount - mPreviousStepCount;
+                    mCurrentStep += thisStep;
+                    mPreviousStepCount = thisStepCount;
+                }
+                break;
             case Sensor.TYPE_STEP_DETECTOR:
                 if (sensorEvent.values[0] == 1.0) {
                     mCurrentStep++;
