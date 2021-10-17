@@ -10,16 +10,16 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.CountDownTimer;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.SystemClock;
 import android.util.ArrayMap;
 import android.util.Log;
-import android.view.View;
+import android.widget.Chronometer;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.AnyThread;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
@@ -29,7 +29,6 @@ import com.example.hc_app.Services.APIConfig;
 import com.example.hc_app.Services.RetrofitConfig;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.material.internal.ViewUtils;
 
 import org.json.JSONObject;
 
@@ -49,7 +48,8 @@ import static com.example.hc_app.Models.Config.USER_ID;
 
 public class StepCountActivity extends FragmentActivity {
     AppCompatButton step_stop;
-    TextView step_counter, step_distance, step_time;
+    TextView step_counter, step_distance;
+    Chronometer mChronometer;
     LinearLayout step_area;
     private boolean mIsBind;
     private SharedPreferences pref;
@@ -57,6 +57,13 @@ public class StepCountActivity extends FragmentActivity {
     Float step_range;
     ProgressDialog p;
     int curStep;
+    private boolean isResume;
+    Handler handler;
+    long tMilliSec,tStart, tBuff, tUpdate = 0L;
+    int sec, min, milleSec;
+
+
+
 //    MyLocationListener mylistener;
 //    GoogleMap mMap;
 
@@ -77,7 +84,7 @@ public class StepCountActivity extends FragmentActivity {
         step_counter    = findViewById(R.id.step_counter);
         step_area       = findViewById(R.id.step_area);
         step_distance   = findViewById(R.id.step_distance);
-        step_time       = findViewById(R.id.step_time);
+        mChronometer       = findViewById(R.id.step_time);
         pref            = getApplicationContext().getSharedPreferences(LOGIN_DATA, MODE_PRIVATE);
         starttimestamp  = Calendar.getInstance().getTimeInMillis();
         endtimestamp    = Calendar.getInstance().getTimeInMillis();
@@ -85,12 +92,16 @@ public class StepCountActivity extends FragmentActivity {
         p               = new ProgressDialog(this);
         curStep         = 0;
 
+        handler = new Handler();
+
+
         step_counter.setText("0");
         step_distance.setText("0");
-        step_time.setText("0");
+        mChronometer.setText("00:00:00");
         showStepCount(0, 0);
         setupService();
         step_stop.setOnClickListener(v -> UpdateSteps());
+
     }
 
     private BitmapDescriptor BitmapFromVector(Context context, int vectorResId) {
@@ -137,40 +148,26 @@ public class StepCountActivity extends FragmentActivity {
         }
         step_counter.setText(currentCounts + "");
         step_distance.setText(String.format("%2f", (float) (currentCounts * step_range)));
-//        long t = endtimestamp - starttimestamp;
-//        String s1 = String.valueOf(t);
-//        s1 = s1+" ms";
-//        step_time.setText(s1);
-        CountUpTimer timer = new CountUpTimer(300000) {
-            public void onTick(int second) {
-                step_time.setText(String.valueOf(second)+"s");
-            }
-        };
+        tStart = SystemClock.uptimeMillis();
+        handler.postDelayed(runnable, 0);
+        mChronometer.start();
 
-        timer.start();
     }
-    public abstract class CountUpTimer extends CountDownTimer {
-        private static final long INTERVAL_MS = 1000;
-        private final long duration;
+    public Runnable runnable = new Runnable() {
+    @Override
+    public void run() {
+        tMilliSec = SystemClock.uptimeMillis() - tStart;
+        tUpdate = tBuff + tMilliSec;
+        sec = (int) (tUpdate/1000);
+        min = sec/60;
+        sec = sec%60;
+        milleSec = (int) (tUpdate%100);
+        mChronometer.setText(String.format("%02d",min)+":"
+        + String.format("%02d",sec) + ":" + String.format("%02d",milleSec));
+        handler.postDelayed(this,60);
 
-        protected CountUpTimer(long durationMs) {
-            super(durationMs, INTERVAL_MS);
-            this.duration = durationMs;
-        }
-
-        public abstract void onTick(int second);
-
-        @Override
-        public void onTick(long msUntilFinished) {
-            int second = (int) ((duration - msUntilFinished) / 1000);
-            onTick(second);
-        }
-
-        @Override
-        public void onFinish() {
-            onTick(duration / 100);
-        }
     }
+};
 
     private void setupService() {
         Intent intent = new Intent(this, StepsService.class);
@@ -265,4 +262,6 @@ public class StepCountActivity extends FragmentActivity {
             unbindService(mServiceConnection);
         }
     }
+
+
 }
