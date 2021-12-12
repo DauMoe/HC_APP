@@ -69,4 +69,13 @@ public interface APIConfig {
 
     @POST("api/change_pass")
     Call<RespObj>ChangePass(@Body RequestBody body);
+
+    //get avatar
+    @POST("api/get_ava")
+    Call<RespObj>GetAva(@Body RequestBody body);
+
+    //set avatar
+    @POST("api/set_ava")
+    Call<RespObj>SetAva(@Body RequestBody body);
+
 }
