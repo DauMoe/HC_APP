@@ -147,7 +147,7 @@ public class StepCountActivity extends FragmentActivity {
             currentCounts = totalStepNum;
         }
         step_counter.setText(currentCounts + "");
-        step_distance.setText(String.format("%2f", (float) (currentCounts * step_range)));
+        step_distance.setText((int)(Math.round(currentCounts * step_range * 100))/100.0 + " m");
         tStart = SystemClock.uptimeMillis();
         handler.postDelayed(runnable, 0);
         mChronometer.start();

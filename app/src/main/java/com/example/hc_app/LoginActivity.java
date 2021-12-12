@@ -89,7 +89,7 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Fill username!", Toast.LENGTH_LONG).show();
             return;
         }
-        if (passTxt.isEmpty()) {
+        if (passTxt.isEmpty() && !WithFinger) {
             Toast.makeText(getApplicationContext(), "Fill password!", Toast.LENGTH_LONG).show();
             return;
         }
