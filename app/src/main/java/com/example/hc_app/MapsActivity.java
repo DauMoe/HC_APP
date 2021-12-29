@@ -61,7 +61,7 @@ public class MapsActivity extends FragmentActivity {
             double latitude = location.getLatitude();
             Log.e("GPS", location.getLatitude() + ", " + location.getLongitude());
             LatLng here = new LatLng(latitude, longitude);
-            mMap.addMarker(new MarkerOptions().position(here).title("Current Location")).setIcon(BitmapFromVector(getApplicationContext(), R.drawable.ic_people));
+            mMap.addMarker(new MarkerOptions().position(here).title("Current Location")).setIcon(BitmapFromVector(getApplicationContext(), R.drawable.ic_my_location));
             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 18.2f));
         }
     }

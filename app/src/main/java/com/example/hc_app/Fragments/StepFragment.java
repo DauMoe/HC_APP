@@ -17,6 +17,7 @@ import androidx.core.util.Pair;
 import androidx.fragment.app.Fragment;
 
 import com.example.hc_app.LoginActivity;
+import com.example.hc_app.MapsActivity;
 import com.example.hc_app.Models.ChartData;
 import com.example.hc_app.Models.RespObj;
 import com.example.hc_app.R;
@@ -102,13 +103,14 @@ public class StepFragment extends Fragment {
 
     private SharedPreferences pref;
     TextView last_records;
-    ImageView step_filter;
+    ImageView step_filter, mapView;
     APIConfig x;
     List<Entry> StepsData= new ArrayList<>();
     List<String> TimeStamp = new ArrayList<>();
     ArrayList<ILineDataSet> dataSets = new ArrayList<>();
     LineDataSet set1;
     LineChart step_chart;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -119,8 +121,9 @@ public class StepFragment extends Fragment {
         last_records            = v.findViewById(R.id.last_records);
         step_filter             = v.findViewById(R.id.step_filter);
         step_chart              = v.findViewById(R.id.step_chart);
+        mapView                 = v.findViewById(R.id.mapV);
         x                       = RetrofitConfig.JSONconfig().create(APIConfig.class);
-
+        mapView.setOnClickListener(v1 -> startActivity(new Intent(getContext(), MapsActivity.class)));
         last_records.setOnClickListener(v1 -> startActivity(new Intent(getContext(), StepCountActivity.class)));
         step_filter.setOnClickListener(v12 -> {
             MaterialDatePicker.Builder<Pair<Long, Long>> builder = MaterialDatePicker.Builder.dateRangePicker();
