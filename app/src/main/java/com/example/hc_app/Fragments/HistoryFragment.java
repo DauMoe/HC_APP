@@ -39,6 +39,7 @@ import static android.content.Context.MODE_PRIVATE;
 import static com.example.hc_app.Models.Config.BMI;
 import static com.example.hc_app.Models.Config.LOGIN_DATA;
 import static com.example.hc_app.Models.Config.USER_ID;
+import static com.example.hc_app.Models.Config.USER_TOKEN;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -115,6 +116,7 @@ public class HistoryFragment extends Fragment {
         p.show();
         Map<String, Object> mReq = new ArrayMap<>();
         mReq.put("userID", pref.getInt(USER_ID, 0));
+        mReq.put("token", pref.getString(USER_TOKEN, ""));
 
         RequestBody body = RequestBody
                 .create(okhttp3.MediaType.parse("application/json; charset=utf-8"),(new JSONObject(mReq)).toString());

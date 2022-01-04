@@ -5,6 +5,7 @@ import androidx.appcompat.widget.AppCompatButton;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.ArrayMap;
 import android.util.Log;
@@ -39,6 +40,7 @@ public class SignupActivity extends AppCompatActivity {
     EditText username, password, repeatPassword;
     TextView login;
     ProgressDialog p;
+    SharedPreferences pref;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,6 +78,7 @@ public class SignupActivity extends AppCompatActivity {
             mReq.put("username", usernameTxt);
             mReq.put("password", passwordTxt);
             mReq.put("roles", 0);
+            mReq.put("token", pref.getString(USER_TOKEN, ""));
             RequestBody body = RequestBody
                     .create(okhttp3.MediaType.parse("application/json; charset=utf-8"),(new JSONObject(mReq)).toString());
             Call<RespObj> g = x.CreateUser(body);

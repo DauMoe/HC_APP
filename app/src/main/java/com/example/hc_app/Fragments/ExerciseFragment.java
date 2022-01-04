@@ -38,6 +38,7 @@ import retrofit2.Response;
 import static android.content.Context.MODE_PRIVATE;
 import static com.example.hc_app.Models.Config.BMI;
 import static com.example.hc_app.Models.Config.LOGIN_DATA;
+import static com.example.hc_app.Models.Config.USER_TOKEN;
 
 public class ExerciseFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
@@ -175,6 +176,7 @@ public class ExerciseFragment extends Fragment {
         Map<String, Object> mReq = new ArrayMap<>();
         mReq.put("grExer", true);
         mReq.put("BMI", pref.getFloat(BMI, 0f));
+        mReq.put("token", pref.getString(USER_TOKEN, ""));
         RequestBody body = RequestBody
                 .create(okhttp3.MediaType.parse("application/json; charset=utf-8"),(new JSONObject(mReq)).toString());
         Call<RespObj> g = x.GetRecommend(body);

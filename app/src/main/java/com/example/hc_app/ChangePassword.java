@@ -28,6 +28,7 @@ import retrofit2.Response;
 
 import static com.example.hc_app.Models.Config.LOGIN_DATA;
 import static com.example.hc_app.Models.Config.USERNAME;
+import static com.example.hc_app.Models.Config.USER_TOKEN;
 
 public class ChangePassword extends AppCompatActivity {
     EditText oldpass, newPass, repeatPass;
@@ -66,6 +67,7 @@ public class ChangePassword extends AppCompatActivity {
             mReq.put("username", pref.getString(USERNAME, null));
             mReq.put("password", oldpassTxt);
             mReq.put("newpass", newpassTxt);
+            mReq.put("token", pref.getString(USER_TOKEN, ""));
             RequestBody body = RequestBody
                     .create(MediaType.parse("application/json; charset=utf-8"), (new JSONObject(mReq)).toString());
             Log.e("REQ", mReq.toString());

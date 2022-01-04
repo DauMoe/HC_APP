@@ -43,6 +43,7 @@ import retrofit2.Response;
 import static com.example.hc_app.Models.Config.LOGIN_DATA;
 import static com.example.hc_app.Models.Config.STEPRANGE;
 import static com.example.hc_app.Models.Config.USER_ID;
+import static com.example.hc_app.Models.Config.USER_TOKEN;
 
 //import com.example.hc_app.Fragments.MapFragment;
 
@@ -227,6 +228,7 @@ public class StepCountActivity extends FragmentActivity {
         mReq.put("starttime", starttimestamp);
         mReq.put("endtime", endtimestamp);
         mReq.put("calo", 0);
+        mReq.put("token", pref.getString(USER_TOKEN, ""));
         RequestBody body = RequestBody
                 .create(okhttp3.MediaType.parse("application/json; charset=utf-8"),(new JSONObject(mReq)).toString());
         APIConfig x = RetrofitConfig.JSONconfig().create(APIConfig.class);

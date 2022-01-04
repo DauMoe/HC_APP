@@ -86,7 +86,6 @@ public class MapsActivity extends FragmentActivity {
             mylistener = new MyLocationListener();
             mylistener.onLocationChanged(location);
             locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, mylistener);
-//            locationManager.removeUpdates(mylistener);
         }
     }
 

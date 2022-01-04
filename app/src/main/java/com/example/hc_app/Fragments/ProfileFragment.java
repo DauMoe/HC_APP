@@ -52,6 +52,7 @@ import static android.content.Context.MODE_PRIVATE;
 import static com.example.hc_app.Models.Config.LOGIN_DATA;
 import static com.example.hc_app.Models.Config.USERNAME;
 import static com.example.hc_app.Models.Config.USER_ID;
+import static com.example.hc_app.Models.Config.USER_TOKEN;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -248,7 +249,7 @@ public class ProfileFragment extends Fragment {
                 mReq.put("weight", Float.parseFloat(weightTxt));
                 mReq.put("age", Integer.parseInt(ageTxt));
                 mReq.put("ava", base64Thum);
-                mReq.put("token", "");
+                mReq.put("token", pref.getString(USER_TOKEN, ""));
                 mReq.put("stepsOneMeter", stepPmeter);
                 RequestBody body = RequestBody
                         .create(okhttp3.MediaType.parse("application/json; charset=utf-8"),(new JSONObject(mReq)).toString());

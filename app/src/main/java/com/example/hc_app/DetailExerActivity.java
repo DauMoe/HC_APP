@@ -1,5 +1,7 @@
 package com.example.hc_app;
 
+import static com.example.hc_app.Models.Config.USER_TOKEN;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -7,6 +9,7 @@ import androidx.core.app.ActivityCompat;
 import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -52,6 +55,7 @@ public class DetailExerActivity extends AppCompatActivity {
     RatingBar rating;
     Button rating_btn;
     int stars = 0;
+    SharedPreferences pref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +85,7 @@ public class DetailExerActivity extends AppCompatActivity {
                 Map<String, Object> mReq = new ArrayMap<>();
                 mReq.put("exerID", exerID);
                 mReq.put("star", stars);
+                mReq.put("token", USER_TOKEN);
                 RequestBody body = RequestBody
                         .create(okhttp3.MediaType.parse("application/json; charset=utf-8"),(new JSONObject(mReq)).toString());
 
@@ -143,6 +148,7 @@ public class DetailExerActivity extends AppCompatActivity {
         p.show();
         Map<String, Object> mReq = new ArrayMap<>();
         mReq.put("exerID", exerID);
+        mReq.put("token", pref.getString(USER_TOKEN, ""));
         RequestBody body = RequestBody
                 .create(okhttp3.MediaType.parse("application/json; charset=utf-8"),(new JSONObject(mReq)).toString());
 

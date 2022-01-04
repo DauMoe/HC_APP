@@ -48,6 +48,7 @@ public class LoginActivity extends AppCompatActivity {
     BiometricPrompt biometricPrompt;
     BiometricPrompt.PromptInfo promptInfo;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

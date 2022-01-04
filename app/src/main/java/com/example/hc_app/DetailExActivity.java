@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.ArrayMap;
 import android.util.Log;
@@ -40,6 +41,7 @@ public class DetailExActivity extends AppCompatActivity {
     int grID;
     ProgressDialog p;
     TextView empty;
+    SharedPreferences pref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +67,7 @@ public class DetailExActivity extends AppCompatActivity {
         Map<String, Object> mReq  = new ArrayMap<>();
         Log.e("grID", String.valueOf(grID));
         mReq.put("grID", grID);
+        mReq.put("token", pref.getString(USER_TOKEN, ""));
         RequestBody body = RequestBody
                 .create(okhttp3.MediaType.parse("application/json; charset=utf-8"),(new JSONObject(mReq)).toString());
         Call<RespObj> g = x.GetListExByID(body);
