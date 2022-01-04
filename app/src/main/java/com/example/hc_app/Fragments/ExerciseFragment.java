@@ -38,6 +38,7 @@ import retrofit2.Response;
 import static android.content.Context.MODE_PRIVATE;
 import static com.example.hc_app.Models.Config.BMI;
 import static com.example.hc_app.Models.Config.LOGIN_DATA;
+import static com.example.hc_app.Models.Config.USER_ID;
 import static com.example.hc_app.Models.Config.USER_TOKEN;
 
 public class ExerciseFragment extends Fragment {
@@ -103,7 +104,12 @@ public class ExerciseFragment extends Fragment {
     private void GetSingleExercises() {
         p.setMessage("Waiting...");
         p.show();
-        Call<RespObj> g = x.GetListExercise();
+        Map<String, Object> mReq = new ArrayMap<>();
+        mReq.put("token", pref.getString(USER_TOKEN, ""));
+
+        RequestBody body = RequestBody
+                .create(okhttp3.MediaType.parse("application/json; charset=utf-8"),(new JSONObject(mReq)).toString());
+        Call<RespObj> g = x.GetListExercise(body);
         g.enqueue(new Callback<RespObj>() {
             @Override
             public void onResponse(Call<RespObj> call, Response<RespObj> response) {
@@ -129,7 +135,7 @@ public class ExerciseFragment extends Fragment {
                 Toast.makeText(getContext(), String.valueOf(t), Toast.LENGTH_LONG).show();
                 //DEBUG AREA
                 Log.i("CODE:", String.valueOf(call));
-                Log.i("ERR:", String.valueOf(t));
+                Log.i("GetSingleExercises:", String.valueOf(t));
             }
         });
     }
@@ -137,7 +143,12 @@ public class ExerciseFragment extends Fragment {
     private void GetGroupExercise() {
         p.setMessage("Waiting...");
         p.show();
-        Call<RespObj> g = x.GetGroupExercise();
+        Map<String, Object> mReq = new ArrayMap<>();
+        mReq.put("token", pref.getString(USER_TOKEN, ""));
+
+        RequestBody body = RequestBody
+                .create(okhttp3.MediaType.parse("application/json; charset=utf-8"),(new JSONObject(mReq)).toString());
+        Call<RespObj> g = x.GetGroupExercise(body);
         g.enqueue(new Callback<RespObj>() {
             @Override
             public void onResponse(Call<RespObj> call, Response<RespObj> response) {
@@ -155,7 +166,7 @@ public class ExerciseFragment extends Fragment {
                     Toast.makeText(getContext(), response.body().getMsg().get(0).toString(), Toast.LENGTH_LONG).show();
                 }
                 //DEBUG AREA
-                Log.i("CODE:", String.valueOf(response.code()));
+                Log.i("GetGroupExerciseCODE:", String.valueOf(response.code()));
             }
 
             @Override
@@ -164,8 +175,8 @@ public class ExerciseFragment extends Fragment {
                 Toast.makeText(getContext(), String.valueOf(t), Toast.LENGTH_LONG).show();
 
                 //DEBUG AREA
-                Log.i("CODE:", String.valueOf(call));
-                Log.i("ERR:", String.valueOf(t));
+                Log.i("GetGroupExerciseCODE:", String.valueOf(call));
+                Log.i("GetGroupExercise:", String.valueOf(t));
             }
         });
     }
@@ -196,7 +207,7 @@ public class ExerciseFragment extends Fragment {
                     Toast.makeText(getContext(), response.body().getMsg().get(0).toString(), Toast.LENGTH_LONG).show();
                 }
                 //DEBUG AREA
-                Log.i("CODE:", String.valueOf(response.code()));
+                Log.i("GetRecommendExerciseCODE:", String.valueOf(response.code()));
             }
 
             @Override
@@ -205,8 +216,8 @@ public class ExerciseFragment extends Fragment {
                 Toast.makeText(getContext(), String.valueOf(t), Toast.LENGTH_LONG).show();
 
                 //DEBUG AREA
-                Log.i("CODE:", String.valueOf(call));
-                Log.i("ERR:", String.valueOf(t));
+                Log.i("GetRecommendExerciseCODE:", String.valueOf(call));
+                Log.i("GetRecommendExercise:", String.valueOf(t));
             }
         });
     }

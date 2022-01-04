@@ -276,8 +276,8 @@ public class ProfileFragment extends Fragment {
                         Toast.makeText(getContext(), String.valueOf(t), Toast.LENGTH_LONG).show();
 
                         //DEBUG AREA
-                        Log.i("CODE:", String.valueOf(call));
-                        Log.i("ERR:", String.valueOf(t));
+                        Log.i("ProfileFragmentCODE:", String.valueOf(call));
+                        Log.i("ProfileFragment:", String.valueOf(t));
                     }
                 });
             }
@@ -316,6 +316,7 @@ public class ProfileFragment extends Fragment {
         p.show();
         Map<String, Object> mReq = new ArrayMap<>();
         mReq.put("username", pref.getString(USERNAME, null));
+        mReq.put("token", pref.getString(USER_TOKEN, ""));
         RequestBody body = RequestBody
                 .create(okhttp3.MediaType.parse("application/json; charset=utf-8"),(new JSONObject(mReq)).toString());
         Call<RespObj> g= x.GetUserInfo(body);
@@ -337,7 +338,7 @@ public class ProfileFragment extends Fragment {
                 } else {
                     Toast.makeText(getContext(), response.body().getMsg().get(0).toString(), Toast.LENGTH_SHORT).show();
                 }
-                Log.e("ERR_CODE", response.body().getMsg().get(0).toString());
+                Log.e("GetUserInfo", response.body().getMsg().get(0).toString());
                 p.hide();
             }
 
@@ -345,7 +346,7 @@ public class ProfileFragment extends Fragment {
             public void onFailure(Call<RespObj> call, Throwable t) {
                 p.hide();
                 Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-                Log.e("FAIL", t.getMessage());
+                Log.e("GetUserInfoFAIL", t.getMessage());
             }
         });
     }

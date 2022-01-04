@@ -42,11 +42,11 @@ public interface APIConfig {
 
     //Get list exercise
     @POST("api/list_exer")
-    Call<RespObj> GetListExercise();
+    Call<RespObj> GetListExercise(@Body RequestBody body);
 
     //Get list group exercise
     @POST("api/get_group_exercise")
-    Call<RespObj> GetGroupExercise();
+    Call<RespObj> GetGroupExercise(@Body RequestBody body);
 
     //Get detail exercise
     @POST("api/get_detail_exercise")

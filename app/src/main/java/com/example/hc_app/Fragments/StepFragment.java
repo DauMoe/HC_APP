@@ -195,8 +195,8 @@ public class StepFragment extends Fragment {
                 Toast.makeText(getContext(), "Call API failed!", Toast.LENGTH_LONG).show();
 
                 //DEBUG AREA
-                Log.i("CODE:", String.valueOf(call));
-                Log.i("ERR:", String.valueOf(t));
+                Log.i("GetStepsTodayCODE:", String.valueOf(call));
+                Log.i("GetStepsToday:", String.valueOf(t));
             }
         });
     }
@@ -274,8 +274,8 @@ public class StepFragment extends Fragment {
                 Toast.makeText(getContext(), "Call API failed!", Toast.LENGTH_LONG).show();
 
                 //DEBUG AREA
-                Log.i("CODE:", String.valueOf(call));
-                Log.i("ERR:", String.valueOf(t));
+                Log.i("DrawStepsHistoryCODE:", String.valueOf(call));
+                Log.i("DrawStepsHistory:", String.valueOf(t));
             }
         });
     }

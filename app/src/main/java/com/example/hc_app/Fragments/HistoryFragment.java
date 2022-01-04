@@ -147,7 +147,7 @@ public class HistoryFragment extends Fragment {
 
                 //DEBUG AREA
                 Log.i("CODE:", String.valueOf(call));
-                Log.i("ERR:", String.valueOf(t));
+                Log.i("GetListHistory:", String.valueOf(t));
             }
         });
     }
