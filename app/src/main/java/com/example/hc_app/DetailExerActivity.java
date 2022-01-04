@@ -1,5 +1,6 @@
 package com.example.hc_app;
 
+import static com.example.hc_app.Models.Config.LOGIN_DATA;
 import static com.example.hc_app.Models.Config.USER_TOKEN;
 
 import androidx.annotation.NonNull;
@@ -63,7 +64,7 @@ public class DetailExerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail_exer);
         Intent x        = getIntent();
         exerID          = x.getIntExtra("data", 0);
-
+        pref            = getApplicationContext().getSharedPreferences(LOGIN_DATA, MODE_PRIVATE);
         e               = RetrofitConfig.JSONconfig().create(APIConfig.class);
         p               = new ProgressDialog(this);
         detail_video    = findViewById(R.id.detail_video);
